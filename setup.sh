@@ -16,16 +16,13 @@ function isCmdExist() {
 	return 2
 }
 
-# 1. pacman(archlinux) or apt(ubuntu) or yum(centos)
-if isCmdExist pacman; then
-  echo "systerm: archlinux"
-  $CURRENT_DIR/scripts/install_pacman.sh
-elif isCmdExist yum; then
-  echo "systerm: centos"
-  $CURRENT_DIR/scripts/install_yum.sh
-elif isCmdExist apt-get; then
-  echo "systerm: ubuntu"
-  $CURRENT_DIR/scripts/install_apt.sh
+# 1. git and zsh
+if isCmdExist git; then
+  echo "please install git"
+  exit
+elif isCmdExist zsh; then
+  echo "please install zsh"
+  exit
 fi
 
 # 2. zsh
@@ -36,15 +33,15 @@ exec $SHELL -l
 # 3. vim
 mkdir -p $HOME/.vim/colors
 mkdir -p $HOME/.vim/backup
-git clone https://github.com/altercation/vim-colors-solarized
-mv ./vim-colors-solarized/colors/solarized.vim $HOME/.vim/colors/
-rm -rf ./vim-colors-solarized
+cp vim/solarized $HOME/.vim/colors/
 
-# 4. python
-$CURRENT_DIR/scripts/install_python.sh
+# 4. TODO: python
+# $CURRENT_DIR/scripts/install_python.sh
 
 # 5. set paths
-ln -sf $CURRENT_DIR/.vimrc $HOME/.vimrc
-ln -sf $CURRENT_DIR/.zshenv $HOME/.zshenv
-ln -sf $CURRENT_DIR/.zsh $HOME/.zsh
-ln -sf $CURRENT_DIR/.tmux.conf $HOME/.tmux.conf
+ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
+ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
+
+# 6. github
+git config --global user.email "xingchensong1996@163.com"
+git config --global user.name "Xingchen Song"
