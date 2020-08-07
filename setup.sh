@@ -26,6 +26,8 @@ if ! isCmdExist zsh; then
   exit
 else
   chsh -s $(which zsh)
+  cp -R zsh/zsh-autosuggestions  $HOME/.oh-my-zsh/custom/plugins/
+  cp -R zsh/zsh-syntax-highlighting  $HOME/.oh-my-zsh/custom/plugins/
 fi
 
 # 2. vim
@@ -42,7 +44,7 @@ ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
 
 # 5. github
 git config --global user.email "xingchensong1996@163.com"
-git config --global user.name "Xingchen Song"
+git config --global user.name "xingchensong"
 
 # 6. launch zsh
 echo "DONE"
