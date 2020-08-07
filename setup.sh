@@ -34,6 +34,9 @@ fi
 mkdir -p $HOME/.vim/colors
 mkdir -p $HOME/.vim/backup
 cp vim/solarized.vim $HOME/.vim/colors/
+if [ ! -f "$HOME/.viminfo" ]; then
+  rm $HOME/.viminfo
+fi
 
 # 3. TODO: python
 # $CURRENT_DIR/scripts/install_python.sh
