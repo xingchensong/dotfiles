@@ -1,0 +1,127 @@
+" -------------------------------------------------------------------------------
+" Common
+" -------------------------------------------------------------------------------
+
+" File encoding
+set nu  " Set the line number
+syntax on  " Syntax highlighting
+"set autochdir  " Set the current dir as thr work dir
+filetype on  " File type detection
+filetype plugin on  " Loading the plugin files for specific file types
+filetype indent on  " Loading the indent file for specific file types with
+
+" Tab and Indent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+"set expandtab  " Use the space to instead of tab
+set autoindent  " Copy indent from current line when starting a new line
+set smartindent " auto indent
+set cindent     " auto indent for cpp files
+
+" Seach and Match
+set hlsearch  " Highlight the search result
+set incsearch  " Real-time search
+set ignorecase
+set smartcase
+set showmatch  " When a bracket is inserted, briefly jump to the matching one
+
+" Display
+set showmode  " Show the current mode
+set t_Co=256  " If under tty, use 256
+
+" Display tab and trail space
+set list
+set listchars=tab:>-,trail:.
+" Not display above list
+nmap <leader>l :set list!<CR>
+
+" Other
+set nobackup
+set encoding=utf-8
+set fileencodings=utf-8,gb18030,cp936,big5 " Set the encode
+set termencoding=utf-8
+set enc=utf8
+" set pastetoggle=<F10>  " Bind `F10` to `:set paste`
+set pastetoggle=<leader>p
+set backspace=2 " same as ":set backspace=indent,eol,start" in vim7.4
+set paste " Keep the original format of the pasted text
+
+" Press `shift` while selecting with the mouse can disable into visual mode
+" In mac os, hold `alt/option` is easier
+" ref: http://stackoverflow.com/questions/4608161/copy-text-out-of-vim-with-set-mouse-a-enabled
+set mouse=a  " Enable mouse
+set selection=exclusive
+set selectmode=mouse,key
+
+set foldmethod=indent  " The kind of folding used for the current window
+set foldlevel=99
+
+" -------------------------------------------------------------------------------
+" Enhanced
+" -------------------------------------------------------------------------------
+
+" remember last edit position
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+autocmd BufReadPost *
+                \ if line("'\"")>0&&line("'\"")<=line("$") |
+                \   exe "normal g'\"" |
+                \ endif
+
+au BufRead,BufNewFile *.md set filetype=markdown  " .md default is modula2
+
+" Execute python file being edited with <Shift> + e:
+map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+
+" Auto add head info
+" .py file auto add header
+function HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1,  "# -*- coding: utf-8 -*-")
+    call append(2,  "# Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
+    normal G
+    normal o
+endf
+autocmd bufnewfile *.py call HeaderPython()
+
+" .sh file auto add header
+function HeaderBash()
+    call setline(1, "#!/bin/bash")
+    call append(1,  "# Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
+    normal G
+    normal o
+endf
+autocmd bufnewfile *.sh call HeaderBash()
+
+" ref: http://stackoverflow.com/questions/158968/changing-vim-indentation-behavior-by-file-type
+autocmd FileType html set shiftwidth=2|set expandtab
+autocmd FileType htmljinja setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType sh setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
+autocmd FileType vim setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+
+" enable quick jump between keyword, such as if/endif
+runtime macros/matchit.vim
+
+" quick expand current active file's directory (not work directory)
+" use `%%' to auto expand instead of `%:h<Tab>'
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" -------------------------------------------------------------------------------
+" Bind Keys
+" -------------------------------------------------------------------------------
+
+" <C-l>: quick temp disable hlsearch
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+" Highlight TODO/FIXME/XXX
+highlight myTODO cterm=bold term=bold ctermbg=yellow ctermfg=black
+match myTODO /\(TODO\|XXX\|FIXME\)/
+
+" Multi-line indent
+xnoremap < <gv
+xnoremap > >gv
