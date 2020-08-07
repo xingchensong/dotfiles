@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="~/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -101,6 +101,46 @@ source $ZSH/oh-my-zsh.sh
 
 
 # xcsong
+
+# git aliasess
+if git --version > /dev/null 2>&1; then
+   alias gb='git branch'
+   alias gad='git add'
+   alias gc='git checkout'
+   alias gcb='git checkout -b'
+   alias gs='git status'
+   alias gst='git status'
+   alias gcm='git checkout master'
+   alias gpom='git pull origin master'
+   alias gmm='git merge master'
+fi
+
+# ls aliases
+export LSCOLORS=Exfxcxdxbxegedabagacad
+alias ls="ls --color"
+alias ll="ls -l --color"
+alias la="ls -la --color"
+alias lsd="ls -lF -color | grep --color=never '^d'"
+
+# grep aliases
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# avoid overwriting another file
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -i'
+
+# cd aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+function mkcd () {
+    mkdir $1;
+    cd $1
+}
 
 #export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 #export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/lib/openmpi/:/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib

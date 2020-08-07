@@ -33,7 +33,7 @@ set showmatch  " When a bracket is inserted, briefly jump to the matching one
 
 " Display
 set showmode  " Show the current mode
-set t_Co=256  " If under tty, use 256
+"set t_Co=256  " If under tty, use 256, highlights all valid lines using light color
 
 " Display tab and trail space
 set list
@@ -110,12 +110,6 @@ autocmd FileType sh setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType vim setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-" enable quick jump between keyword, such as if/endif
-runtime macros/matchit.vim
-
-" quick expand current active file's directory (not work directory)
-" use `%%' to auto expand instead of `%:h<Tab>'
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " -------------------------------------------------------------------------------
 " Bind Keys
@@ -131,3 +125,4 @@ match myTODO /\(TODO\|XXX\|FIXME\)/
 " Multi-line indent
 xnoremap < <gv
 xnoremap > >gv
+

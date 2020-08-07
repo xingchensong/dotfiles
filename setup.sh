@@ -17,31 +17,33 @@ function isCmdExist() {
 }
 
 # 1. git and zsh
-if isCmdExist git; then
+if ! isCmdExist git; then
   echo "please install git"
   exit
-elif isCmdExist zsh; then
+fi
+if ! isCmdExist zsh; then
   echo "please install zsh"
   exit
+else
+  chsh -s $(which zsh)
 fi
 
-# 2. zsh
-chsh -s $(which zsh)
-exec $SHELL -l
-# NOTE: still bash until reboot
-
-# 3. vim
+# 2. vim
 mkdir -p $HOME/.vim/colors
 mkdir -p $HOME/.vim/backup
-cp vim/solarized $HOME/.vim/colors/
+cp vim/solarized.vim $HOME/.vim/colors/
 
-# 4. TODO: python
+# 3. TODO: python
 # $CURRENT_DIR/scripts/install_python.sh
 
-# 5. set paths
+# 4. set paths
 ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
 ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
 
-# 6. github
+# 5. github
 git config --global user.email "xingchensong1996@163.com"
 git config --global user.name "Xingchen Song"
+
+# 6. launch zsh
+echo "DONE"
+zsh
