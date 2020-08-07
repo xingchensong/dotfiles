@@ -26,6 +26,10 @@ if ! isCmdExist zsh; then
   exit
 else
   chsh -s $(which zsh)
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "install oh-my-zsh via zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh"
+    sh zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh
+  fi
   cp -R zsh/zsh-autosuggestions  $HOME/.oh-my-zsh/custom/plugins/
   cp -R zsh/zsh-syntax-highlighting  $HOME/.oh-my-zsh/custom/plugins/
 fi
