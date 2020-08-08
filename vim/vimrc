@@ -3,8 +3,11 @@
 " -------------------------------------------------------------------------------
 
 " scheme
+set termguicolors
 set background=dark
-colorscheme solarized
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
+colorscheme solarized8
 
 " File encoding
 set nu  " Set the line number
@@ -33,7 +36,7 @@ set showmatch  " When a bracket is inserted, briefly jump to the matching one
 
 " Display
 set showmode  " Show the current mode
-"set t_Co=256  " If under tty, use 256, highlights all valid lines using light color
+"set t_Co=256  " If under tty, use 256
 
 " Display tab and trail space
 set list

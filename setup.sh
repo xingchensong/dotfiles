@@ -37,7 +37,7 @@ fi
 # 2. vim
 mkdir -p $HOME/.vim/colors
 mkdir -p $HOME/.vim/backup
-cp vim/solarized.vim $HOME/.vim/colors/
+cp vim/color/*.vim $HOME/.vim/colors/
 if [ ! -f "$HOME/.viminfo" ]; then
   rm $HOME/.viminfo
 fi
