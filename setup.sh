@@ -25,7 +25,21 @@ if ! isCmdExist zsh; then
   echo "please install zsh"
   exit
 else
-  chsh -s $(which zsh)
+  if [ `whoami` != "root" ]; then
+    # install zsh for non-root user (enable change theme)
+    mkdir -p $HOME/.local
+    cd zsh
+    tar xvJf zsh-5.8.tar.xz
+    cd zsh-5.8
+    ./configure --prefix="$HOME/.local"
+    make
+    make install
+    cd ..
+    rm -rf zsh-5.8
+    cd ..
+  fi
+  ./zsh/fonts/install.sh
+  chsh -s $HOME/.local/bin/zsh
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "install oh-my-zsh via zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh"
     sh zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh
@@ -55,4 +69,4 @@ git config --global user.name "xingchensong"
 
 # 6. launch zsh
 echo "DONE"
-zsh
+$HOME/.local/bin/zsh
