@@ -39,7 +39,7 @@ else
     cd ..
   fi
   ./zsh/fonts/install.sh
-  chsh -s $HOME/.local/bin/zsh
+  # chsh -s $HOME/.local/bin/zsh
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "install oh-my-zsh via zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh"
     sh zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh
@@ -69,4 +69,5 @@ git config --global user.name "xingchensong"
 
 # 6. launch zsh
 echo "DONE"
-$HOME/.local/bin/zsh
+export PATH=$HOME/.local/bin:$PATH
+zsh

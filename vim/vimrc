@@ -122,8 +122,16 @@ autocmd FileType vim setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " Highlight TODO/FIXME/XXX
-highlight myTODO cterm=bold term=bold ctermbg=yellow ctermfg=black
-match myTODO /\(TODO\|XXX\|FIXME\)/
+"highlight myTODO cterm=bold term=bold ctermbg=yellow ctermfg=black
+"match myTODO /\(TODO\|XXX\|FIXME\)/
+
+if has("autocmd")
+  " Highlight TODO, FIXME, NOTE, etc.
+  if v:version > 701
+    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|BUG\|HACK\)')
+    autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\)')
+  endif
+endif
 
 " Multi-line indent
 xnoremap < <gv
