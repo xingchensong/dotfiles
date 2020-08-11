@@ -38,6 +38,8 @@ else
     rm -rf zsh-5.8
     cd ..
   fi
+  export PATH=$HOME/.local/bin:/usr/bin:$PATH
+  export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
   ./zsh/fonts/install.sh
   # chsh -s $HOME/.local/bin/zsh
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -69,4 +71,6 @@ git config --global user.name "xingchensong"
 
 # 6. launch zsh
 echo "DONE"
-export PATH=$HOME/.local/bin:$PATH
+echo "export PATH=$HOME/.local/bin:/usr/bin:$PATH" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
+echo "zsh" >> ~/.bashrc
