@@ -102,6 +102,9 @@ source $ZSH/oh-my-zsh.sh
 
 # xcsong
 
+# vi alias
+alias vi='vim'
+
 # git aliasess
 if git --version > /dev/null 2>&1; then
    alias gb='git branch'
@@ -152,4 +155,10 @@ export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
 #export CUDA_PATH=$CUDA_HOME
 #source /jizhi/jizhi2/worker/env_scripts/*
 #export PATH="/usr/bin:$PATH:$HOME/.ft"
-#export PATH="/root/anaconda3/bin:$PATH"
+
+# mjrc-serverXX
+if [[ $(hostname -f) == mjrc-server* ]]; then
+  export PATH="/opt/anaconda/bin:/opt/cuda/bin:$PATH" # for conda & cuda
+  export LD_LIBRARY_PATH="/opt/cuda/lib:$LD_LIBRARY_PATH"
+  export TERMINFO=/usr/share/terminfo/  # for gpustat
+fi
