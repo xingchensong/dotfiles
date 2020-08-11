@@ -142,12 +142,12 @@ function mkcd () {
     cd $1
 }
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/bin:$PATH
 #export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 #export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/lib/openmpi/:/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib
 #export CUDA_HOME=/usr/local/cuda-10.0
 #export CFLAGS="-I$CUDA_HOME/include $CFLAGS"
-export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
 #export LIBRARY_PATH=/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib/:$LIBRARY_PATH
 #export CUDA_PATH=$CUDA_HOME
 #source /jizhi/jizhi2/worker/env_scripts/*

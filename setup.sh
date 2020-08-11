@@ -70,4 +70,3 @@ git config --global user.name "xingchensong"
 # 6. launch zsh
 echo "DONE"
 export PATH=$HOME/.local/bin:$PATH
-zsh
