@@ -1,0 +1,27 @@
+[user]
+	email = xingchensong1996@163.com
+	name = xingchensong
+
+[alias]
+	br = branch
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+
+[color "branch"]
+	current = green
+	local = white
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = green
+	changed = red
+	untracked = red
