@@ -14,6 +14,18 @@ Plug 'preservim/nerdtree'
 " fuzzy file finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" auto-complete
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" fast comment
+Plug 'preservim/nerdcommenter'
+" rainbow
+Plug 'kien/rainbow_parentheses.vim'
+" auto-pair
+Plug 'jiangmiao/auto-pairs'
+" auto-pep8 for python
+Plug 'tell-k/vim-autopep8'
+" indent line for python
+Plug 'Yggdroot/indentLine'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype on
@@ -28,6 +40,18 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeT
 let g:fzf_preview_window = 'right:60%'
 " open selected file in new tab (vsplited)
 let g:fzf_action = { 'enter': 'vsplit' }
+
+" comment
+map <F4> <leader>ci <CR>
+
+" rainbow always on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" auto-pep8 map to <F8>
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
 " -------------------------------------------------------------------------------
 " Common
@@ -80,10 +104,9 @@ set encoding=utf-8
 set fileencodings=utf-8,gb18030,cp936,big5 " Set the encode
 set termencoding=utf-8
 set enc=utf8
-" set pastetoggle=<F10>  " Bind `F10` to `:set paste`
-set pastetoggle=<leader>p
+set pastetoggle=<F10>  " Bind `F10` to `:set paste`
 set backspace=2 " same as ":set backspace=indent,eol,start" in vim7.4
-set paste " Keep the original format of the pasted text
+"set paste " Keep the original format of the pasted text
 
 " Press `shift` while selecting with the mouse can disable into visual mode
 " In mac os, hold `alt/option` is easier
