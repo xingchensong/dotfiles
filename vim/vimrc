@@ -1,4 +1,20 @@
 " -------------------------------------------------------------------------------
+" vim-plug
+" -------------------------------------------------------------------------------
+
+" set the runtime path to include vim-plug and initialize
+set rtp+=~/.vim/autoload/plug.vim
+call plug#begin('~/.vim/vim_plug')
+" easy alignment
+Plug 'junegunn/vim-easy-align'
+" calls any arbitrary Git command in vim
+Plug 'tpope/vim-fugitive'
+" All of your Plugins must be added before the following line
+call plug#end()            " required
+filetype on
+filetype plugin indent on    " loading the plugin/indent files for specific file types
+
+" -------------------------------------------------------------------------------
 " Common
 " -------------------------------------------------------------------------------
 
@@ -13,9 +29,6 @@ colorscheme solarized8
 set nu  " Set the line number
 syntax on  " Syntax highlighting
 "set autochdir  " Set the current dir as thr work dir
-filetype on  " File type detection
-filetype plugin on  " Loading the plugin files for specific file types
-filetype indent on  " Loading the indent file for specific file types with
 
 " Tab and Indent
 set tabstop=4

@@ -50,13 +50,15 @@ else
   cp -R zsh/zsh-syntax-highlighting  $HOME/.oh-my-zsh/custom/plugins/
 fi
 
-# 2. vim
+# 2. vim && vim-plug
 mkdir -p $HOME/.vim/colors
 mkdir -p $HOME/.vim/backup
 cp vim/color/*.vim $HOME/.vim/colors/
 if [ ! -f "$HOME/.viminfo" ]; then
   rm $HOME/.viminfo
 fi
+mkdir -p $HOME/.vim/autoload
+cp $CURRENT_DIR/vim/vim-plug/plug.vim $HOME/.vim/autoload
 
 # 3. TODO: python
 # $CURRENT_DIR/scripts/install_python.sh
@@ -64,6 +66,7 @@ fi
 # 4. set paths
 ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
 ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
+ln -sf $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
 
 # 5. github
 git config --global user.email "xingchensong1996@163.com"
