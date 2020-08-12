@@ -9,10 +9,25 @@ call plug#begin('~/.vim/vim_plug')
 Plug 'junegunn/vim-easy-align'
 " calls any arbitrary Git command in vim
 Plug 'tpope/vim-fugitive'
+" tree dir
+Plug 'preservim/nerdtree'
+" fuzzy file finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype on
 filetype plugin indent on    " loading the plugin/indent files for specific file types
+
+" bind <F2> to open/close NERTree
+map <F2> :NERDTreeToggle<CR>
+" auto-close NERTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+" open selected file in new tab (vsplited)
+let g:fzf_action = { 'enter': 'vsplit' }
 
 " -------------------------------------------------------------------------------
 " Common
