@@ -140,6 +140,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+# gpustat aliases
+alias nv='gpustat'
+alias ns='nvidia-smi'
+
 function mkcd () {
     mkdir $1;
     cd $1
