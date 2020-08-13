@@ -14,7 +14,7 @@ Plug 'preservim/nerdtree'
 " fuzzy file finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" auto-complete
+" auto-complete (deprecated, use `sudo pacman -S youcompleteme..` instead)
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " fast comment
 Plug 'preservim/nerdcommenter'
@@ -26,6 +26,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tell-k/vim-autopep8'
 " indent line for python
 Plug 'Yggdroot/indentLine'
+" auto-jump
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-scripts/taglist.vim'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype on
@@ -42,7 +45,7 @@ let g:fzf_preview_window = 'right:60%'
 let g:fzf_action = { 'enter': 'vsplit' }
 
 " comment
-map <F4> <leader>ci <CR>
+map <C-\> <leader>ci <CR>
 
 " rainbow always on
 au VimEnter * RainbowParenthesesToggle
@@ -52,6 +55,31 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " auto-pep8 map to <F8>
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+
+" settings for auto-jump [https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/]
+" tag list window
+map <silent> <F3> :TlistToggle<cr>
+" gutentags will stop recursing to the upper directory when it encounters these file/dir names
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+" The name of the generated data file
+let g:gutentags_ctags_tagfile = '.tags'
+" Put all the automatically generated tags files into the ~/.cache/tags directory to avoid polluting the project directory
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" Check ~/.cache/tags, create a new one if it does not exist
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+" Configure ctags parameters
+let g:gutentags_ctags_extra_args = ['--fields=+niazSlm', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px', '--python-kinds=-i']
+" generate new tags if you just finished writing a new file
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+
 
 " -------------------------------------------------------------------------------
 " Common

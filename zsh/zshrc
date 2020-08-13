@@ -162,7 +162,7 @@ export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
 
 # mjrc-serverXX
 if [[ $(hostname -f) == mjrc-server* ]]; then
-  export PATH="/opt/anaconda/bin:/opt/cuda/bin:$PATH" # for conda & cuda
-  export LD_LIBRARY_PATH="/opt/cuda/lib:$LD_LIBRARY_PATH"
+  export PATH="$PATH:/opt/anaconda/bin:/opt/cuda/bin" # for conda & cuda, set /usr/bin/python > /opt/anaconda/bin/python
+  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib"
   export TERMINFO=/usr/share/terminfo/  # for gpustat
 fi
