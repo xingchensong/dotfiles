@@ -29,6 +29,8 @@ Plug 'Yggdroot/indentLine'
 " auto-jump
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-scripts/taglist.vim'
+" zoom wimdow
+Plug 'szw/vim-maximizer'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype on
@@ -41,8 +43,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeT
 
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
-" open selected file in new tab (vsplited)
-let g:fzf_action = { 'enter': 'vsplit' }
+" open selected file in new tab (vsplited/hsplited)
+let g:fzf_action = { 'enter': 'vsplit' , '=': 'split'}
 
 " comment
 map <C-\> <leader>ci <CR>
@@ -80,6 +82,13 @@ let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
 
+" Zoom / Restore window.
+" Whether Maximizer should set default mappings or not
+let g:maximizer_set_default_mapping = 1
+" Whether Maximizer should set default mappings with banged version or not
+let g:maximizer_set_mapping_with_bang = 0
+" The default mappings key
+let g:maximizer_default_mapping_key = '<F4>'
 
 " -------------------------------------------------------------------------------
 " Common
@@ -143,8 +152,12 @@ set mouse=a  " Enable mouse
 set selection=exclusive
 set selectmode=mouse,key
 
+" fold code
 set foldmethod=indent  " The kind of folding used for the current window
 set foldlevel=99
+
+" When moving the cursor up or down, at least the number of lines displayed above or below the cursor will remain
+set scrolloff=50
 
 " -------------------------------------------------------------------------------
 " Enhanced
@@ -192,7 +205,6 @@ autocmd FileType sh setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType vim setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-
 " -------------------------------------------------------------------------------
 " Bind Keys
 " -------------------------------------------------------------------------------
@@ -215,4 +227,13 @@ endif
 " Multi-line indent
 xnoremap < <gv
 xnoremap > >gv
+
+" jump back
+nmap oo <C-o>
+" change window
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+
 
