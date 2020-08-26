@@ -44,7 +44,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeT
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
 " open selected file in new tab (vsplited/hsplited)
-let g:fzf_action = { 'enter': 'vsplit' , '=': 'split'}
+let g:fzf_action = { 'enter': 'vsplit' , '=': 'split', 't': 'tabedit'}
 
 " comment
 map <C-\> <leader>ci <CR>
@@ -230,10 +230,21 @@ xnoremap > >gv
 
 " jump back
 nmap oo <C-o>
+nmap ii <C-i>
 " change window
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 nmap <C-j> <C-W>j
 nmap <C-k> <C-W>k
-
-
+" change tab
+nmap H gT
+nmap L gt
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
