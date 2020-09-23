@@ -12,10 +12,10 @@ Plug 'tpope/vim-fugitive'
 " tree dir
 Plug 'preservim/nerdtree'
 " fuzzy file finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
 " auto-complete (deprecated, use `sudo pacman -S youcompleteme..` instead)
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'ycm-core/YouCompleteMe'
 " fast comment
 Plug 'preservim/nerdcommenter'
 " rainbow
@@ -31,6 +31,9 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'vim-scripts/taglist.vim'
 " zoom wimdow
 Plug 'szw/vim-maximizer'
+" airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype on
@@ -89,6 +92,19 @@ let g:maximizer_set_default_mapping = 1
 let g:maximizer_set_mapping_with_bang = 0
 " The default mappings key
 let g:maximizer_default_mapping_key = '<F4>'
+
+" airline
+" This is disabled by default; add the following to your vimrc to enable the extension
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme="solarized"
+let g:airline_solarized_bg='dark'
+" Separators can be configured independently for the tabline, so here is how you can define straight tabs:
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+" do not count withspace
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
 
 " -------------------------------------------------------------------------------
 " Common
