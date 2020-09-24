@@ -22,6 +22,8 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " fast comment
 Plug 'preservim/nerdcommenter'
 " rainbow
@@ -42,6 +44,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " background process runing
 Plug 'skywind3000/asyncrun.vim'
+" cpp check syntax, need `sudo apt-get install clang` first | cpp highlight |
+" .h .cpp exchange (:A :AV :AS) | cpp format (:ClangFormat)
+Plug 'w0rp/ale'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-scripts/a.vim'
+Plug 'rhysd/vim-clang-format'
+" sidebar
+Plug 'mhinz/vim-signify'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype on
@@ -116,9 +127,60 @@ let g:airline#extensions#whitespace#symbol = '!'
 
 " auto-complete
 let g:deoplete#enable_at_startup = 1
+" Do not use <tab> if you use YouCompleteMe
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " Quickfix window for background runing
 let g:asyncrun_open = 8
+" 设置 F5 打开/关闭 Quickfix 窗口
+nnoremap <F5> :call asyncrun#quickfix_toggle(6)<cr>
+
+"" ale cppcheck
+"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
+let g:ale_linters = {
+            \ 'c': ['gcc', 'clang'],
+            \ 'cpp': ['g++', 'clang'],
+            \ 'python3': ['pylint'],
+            \ }
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99
+            \ -I .
+            \ -I /usr/include'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++11
+            \ -I .
+            \ -I /usr/include'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+"自定义error和warning图标
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+"在vim自带的状态栏中整合ale
+let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
+"显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+"<Leader>s触发/关闭语法检查
+nmap <Leader>s :ALEToggle<CR>
+"<Leader>d查看错误或警告的详细信息
+nmap <Leader>d :ALEDetail<CR>
+let g:ale_linters_explicit = 1  " 只显示运行ale_linters的文件
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'  " 防止YCM不停补全
+let g:ale_lint_on_insert_leave = 1
+let g:ale_set_highlights = 0
+
+" vim-signify
+set signcolumn=yes  " 强制显示侧边栏，防止时有时无
 
 " -------------------------------------------------------------------------------
 " Common
