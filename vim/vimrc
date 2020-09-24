@@ -227,6 +227,29 @@ function HeaderBash()
 endf
 autocmd bufnewfile *.sh call HeaderBash()
 
+" .cpp file auto add header
+function HeaderCpp()
+    call setline(1,  "// Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
+    call append(1, "")
+    call append(2, "#include <bits/stdc++.h>")
+    call append(3, "using namespace std;")
+    normal G
+    normal o
+endf
+autocmd bufnewfile *.cc,*.cpp call HeaderCpp()
+
+" .h file auto add header
+function HeaderH()
+    call setline(1,  "// Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
+    call append(1, "")
+    call append(2,  "#ifndef _".toupper(expand("%:t:r"))."_H")
+    call append(3, "#define _".toupper(expand("%:t:r"))."_H")
+    call append(4, "")
+    call append(5, "#endif //".toupper(expand("%:t:r"))."_H")
+    normal G
+endf
+autocmd bufnewfile *.h,*.hpp call HeaderH()
+
 " ref: http://stackoverflow.com/questions/158968/changing-vim-indentation-behavior-by-file-type
 autocmd FileType html set shiftwidth=2|set expandtab
 autocmd FileType htmljinja setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
