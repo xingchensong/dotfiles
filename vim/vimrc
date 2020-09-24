@@ -14,8 +14,14 @@ Plug 'preservim/nerdtree'
 " fuzzy file finder
 Plug 'junegunn/fzf'
 " auto-complete (deprecated, use `sudo pacman -S youcompleteme..` instead)
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'ycm-core/YouCompleteMe'
+if has('nvim') " need 'pip3 install --user pynvim neovim' and vim compiled via python3
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 " fast comment
 Plug 'preservim/nerdcommenter'
 " rainbow
@@ -34,6 +40,8 @@ Plug 'szw/vim-maximizer'
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" background process runing
+Plug 'skywind3000/asyncrun.vim'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype on
@@ -106,6 +114,12 @@ let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 
+" auto-complete
+let g:deoplete#enable_at_startup = 1
+
+" Quickfix window for background runing
+let g:asyncrun_open = 8
+
 " -------------------------------------------------------------------------------
 " Common
 " -------------------------------------------------------------------------------
@@ -164,9 +178,11 @@ set backspace=2 " same as ":set backspace=indent,eol,start" in vim7.4
 " Press `shift` while selecting with the mouse can disable into visual mode
 " In mac os, hold `alt/option` is easier
 " ref: http://stackoverflow.com/questions/4608161/copy-text-out-of-vim-with-set-mouse-a-enabled
-set mouse=a  " Enable mouse
-set selection=exclusive
-set selectmode=mouse,key
+if has('mouse')
+  set mouse-=a  " Enable mouse
+  set selection=exclusive
+  set selectmode=mouse,key
+endif
 
 " fold code
 set foldmethod=indent  " The kind of folding used for the current window
