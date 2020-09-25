@@ -22,9 +22,7 @@ if ! isCmdExist git; then
   exit
 fi
 if ! isCmdExist zsh; then
-  echo "please install zsh"
-  exit
-else
+  echo "install zsh now"
   if [ `whoami` != "root" ]; then
     # install zsh for non-root user (enable change theme)
     mkdir -p $HOME/.local
@@ -37,18 +35,21 @@ else
     cd ..
     rm -rf zsh-5.8
     cd ..
+  else
+    echo "root user is not supported"
+    exit
   fi
-  export PATH=$HOME/.local/bin:/usr/bin:$PATH
-  export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
-  ./zsh/fonts/install.sh
-  # chsh -s $HOME/.local/bin/zsh
-  if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "install oh-my-zsh via zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh"
-    sh zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh
-  fi
-  cp -R zsh/zsh-autosuggestions  $HOME/.oh-my-zsh/custom/plugins/
-  cp -R zsh/zsh-syntax-highlighting  $HOME/.oh-my-zsh/custom/plugins/
 fi
+export PATH=$HOME/.local/bin:/usr/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
+./zsh/fonts/install.sh
+# chsh -s $HOME/.local/bin/zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+echo "install oh-my-zsh via zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh"
+sh zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh
+fi
+cp -R zsh/zsh-autosuggestions  $HOME/.oh-my-zsh/custom/plugins/
+cp -R zsh/zsh-syntax-highlighting  $HOME/.oh-my-zsh/custom/plugins/
 
 # 2. vim && vim-plug
 mkdir -p $HOME/.vim/colors
@@ -68,11 +69,7 @@ ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
 ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
 ln -sf $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
 
-# 5. github
-git config --global user.email "xingchensong1996@163.com"
-git config --global user.name "xingchensong"
-
-# 6. launch zsh
+# 5. launch zsh
 echo "DONE"
 echo "export PATH=$HOME/.local/bin:/usr/bin:$PATH" >> ~/.bashrc
 echo "export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH" >> ~/.bashrc

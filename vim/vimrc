@@ -199,8 +199,10 @@ set signcolumn=yes  " 强制显示侧边栏，防止时有时无
 " scheme
 set termguicolors
 set background=dark
-"let g:solarized_termcolors=256
-"let g:solarized_termtrans=1
+if v:version < 801
+ let g:solarized_termcolors=256
+ let g:solarized_termtrans=1
+endif
 colorscheme solarized8
 
 " File encoding
