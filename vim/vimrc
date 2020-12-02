@@ -33,7 +33,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'kien/rainbow_parentheses.vim'
 " auto-pair
 Plug 'jiangmiao/auto-pairs'
-" auto-pep8 for python
+" auto-pep8 for python, need `pip3 install --user autopep8` first
 Plug 'tell-k/vim-autopep8'
 " indent line for python
 Plug 'Yggdroot/indentLine'
@@ -58,6 +58,15 @@ Plug 'Shougo/deoplete-clangx'
 Plug 'mhinz/vim-signify'
 " comment
 Plug 'tpope/vim-commentary'
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" markdown setting
+Plug 'mzlogin/vim-markdown-toc' " 自动在当前光标生成目录的插件
+Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
+Plug 'plasticboy/vim-markdown' " Markdown语法高亮 段落折叠，查看目录，段间跳转
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -192,6 +201,21 @@ let g:ale_set_highlights = 0
 " vim-signify
 set signcolumn=yes  " 强制显示侧边栏，防止时有时无
 
+" markdown 开启latex公式 和 YAML语法
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter=1
+
+" Vim-markdown-toc 取消储存时自动更新目录
+let g:vmt_auto_update_on_save = 0
+" 自动找到较低的目录层级，然后删除（否则自动生成的目录层级太多）
+function RToc()
+  exe "/-toc .* -->"
+  let lstart=line('.')
+  exe "/-toc -->"
+  let lnum=line('.')
+  execute lstart.",".lnum."g/           /d"
+endfunction
+
 " -------------------------------------------------------------------------------
 " Common
 " -------------------------------------------------------------------------------
@@ -211,9 +235,9 @@ syntax on  " Syntax highlighting
 "set autochdir  " Set the current dir as thr work dir
 
 " Tab and Indent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set smarttab
 "set expandtab  " Use the space to instead of tab
 set autoindent  " Copy indent from current line when starting a new line
@@ -276,15 +300,15 @@ autocmd BufReadPost *
                 \   exe "normal g'\"" |
                 \ endif
 
-au BufRead,BufNewFile *.md set filetype=markdown  " .md default is modula2
+au BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown  " .md default is modula2
 
 " Execute python file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:!/usr/bin/env python % <CR>
+map <buffer> <S-e> :w<CR>:!/usr/bin/env python3 % <CR>
 
 " Auto add head info
 " .py file auto add header
 function HeaderPython()
-    call setline(1, "#!/usr/bin/env python")
+    call setline(1, "#!/usr/bin/env python3")
     call append(1,  "# -*- coding: utf-8 -*-")
     call append(2,  "# Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
     normal G

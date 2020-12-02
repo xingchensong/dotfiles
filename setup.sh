@@ -67,7 +67,18 @@ cp $CURRENT_DIR/vim/vim-plug/plug.vim $HOME/.vim/autoload
 # 4. set paths
 ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
 ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
-ln -sf $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
+mkdir -p $HOME/.vim/UltiSnips
+ln -sf $PWD/snippets/markdown.snippets $HOME/.vim/UltiSnips/markdown.snippets
+# ubuntu20 proxy
+if [[ $(hostname -f) == ubuntu20 ]]; then
+    cp $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
+    echo "[http]" >> $HOME/.gitconfig
+    echo "    proxy = socks5://127.0.0.1:7891" >> $HOME/.gitconfig
+    echo "[https]" >> $HOME/.gitconfig
+    echo "    proxy = socks5://127.0.0.1:7891" >> $HOME/.gitconfig
+else
+    ln -sf $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
+fi
 
 # 5. launch zsh
 echo "DONE"

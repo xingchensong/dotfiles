@@ -150,19 +150,34 @@ function mkcd () {
 }
 
 export PATH=$HOME/.local/bin:/usr/bin:$PATH
-#export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
-#export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/lib/openmpi/:/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib
-#export CUDA_HOME=/usr/local/cuda-10.0
-#export CFLAGS="-I$CUDA_HOME/include $CFLAGS"
 export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
-#export LIBRARY_PATH=/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib/:$LIBRARY_PATH
-#export CUDA_PATH=$CUDA_HOME
-#source /jizhi/jizhi2/worker/env_scripts/*
-#export PATH="/usr/bin:$PATH:$HOME/.ft"
+
+# cuda
+if [ -d "/usr/local/cuda" ]; then
+  export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+  #export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/lib/openmpi/:/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib
+  export CUDA_HOME=/usr/local/cuda
+  export CFLAGS="-I$CUDA_HOME/include $CFLAGS"
+  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+  #export LIBRARY_PATH=/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib/:$LIBRARY_PATH
+  export CUDA_PATH=$CUDA_HOME
+fi
 
 # mjrc-serverXX
 if [[ $(hostname -f) == mjrc-server* ]]; then
   export PATH="$PATH:/opt/anaconda/bin:/opt/cuda/bin" # for conda & cuda, set /usr/bin/python > /opt/anaconda/bin/python
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib"
   export TERMINFO=/usr/share/terminfo/  # for gpustat
+fi
+
+# ubuntu20
+if [[ $(hostname -f) == ubuntu20 ]]; then
+  export PATH=$HOME/tools/miniconda3/bin:$PATH
+fi
+
+# iZwz99mdp65r2jgcgfztayZ
+if [[ $(hostname -f) == iZwz99mdp65r2jgcgfztayZ ]]; then
+  # Install Ruby Gems to ~/gems
+  export GEM_HOME=$HOME/gems
+  export PATH=$HOME/gems/bin:$PATH
 fi
