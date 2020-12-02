@@ -67,8 +67,7 @@ cp $CURRENT_DIR/vim/vim-plug/plug.vim $HOME/.vim/autoload
 # 4. set paths
 ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
 ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
-mkdir -p $HOME/.vim/UltiSnips
-ln -sf $PWD/vim/snippets/markdown.snippets $HOME/.vim/UltiSnips/markdown.snippets
+ln -sf $PWD/vim/snippets $HOME/.vim/UltiSnips
 # ubuntu20 proxy
 if [[ $(hostname -f) == ubuntu20 ]]; then
     cp $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
