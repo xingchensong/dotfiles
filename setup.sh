@@ -61,8 +61,8 @@ fi
 mkdir -p $HOME/.vim/autoload
 cp $CURRENT_DIR/vim/vim-plug/plug.vim $HOME/.vim/autoload
 
-# 3. TODO: python
-# $CURRENT_DIR/scripts/install_python.sh
+# 3. python3-pip clang ctags
+# see scripts/install_pkg.sh
 
 # 4. set paths
 ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
