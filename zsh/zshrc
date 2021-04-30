@@ -10,6 +10,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="avit" #"agnoster"
 
+# Ignore insecure completion-dependent directories
+ZSH_DISABLE_COMPFIX="true"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -194,4 +197,11 @@ if [[ $(hostname -f) == iZwz99mdp65r2jgcgfztayZ ]]; then
   # Install Ruby Gems to ~/gems
   export GEM_HOME=$HOME/gems
   export PATH=$HOME/gems/bin:$PATH
+fi
+
+# MSRA cloud server
+if [[ $(hostname -f) == GCR* ]]; then
+  export PYTHONUSERBASE=$HOME/workspace/espnet/tools/python_user_base
+  export PATH=$PATH:$HOME/workspace/espnet/tools/python_user_base/bin
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/workspace/espnet/tools/python_user_base/lib
 fi

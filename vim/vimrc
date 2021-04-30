@@ -47,7 +47,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " background process runing
 Plug 'skywind3000/asyncrun.vim'
-" cpp check syntax, need `sudo apt-get install clang` first | cpp highlight |
+" cpp check syntax, need `sudo apt-get install clang ctags` first | cpp highlight |
 " .h .cpp exchange (:A :AV :AS) | cpp format (:ClangFormat) | deoplete cpp
 Plug 'w0rp/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
