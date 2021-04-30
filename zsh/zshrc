@@ -173,6 +173,20 @@ fi
 # ubuntu20
 if [[ $(hostname -f) == ubuntu20 ]]; then
   export PATH=$HOME/tools/miniconda3/bin:$PATH
+	# >>> conda initialize >>>
+	# !! Contents within this block are managed by 'conda init' !!
+	__conda_setup="$('/home/xcsong/tools/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+	if [ $? -eq 0 ]; then
+			eval "$__conda_setup"
+	else
+			if [ -f "/home/xcsong/tools/miniconda3/etc/profile.d/conda.sh" ]; then
+					. "/home/xcsong/tools/miniconda3/etc/profile.d/conda.sh"
+			else
+					export PATH="/home/xcsong/tools/miniconda3/bin:$PATH"
+			fi
+	fi
+	unset __conda_setup
+	# <<< conda initialize <<<
 fi
 
 # iZwz99mdp65r2jgcgfztayZ

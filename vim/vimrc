@@ -122,6 +122,8 @@ let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
+" need `sudo ctags -R --c++-kinds=+p --fields=+iaS --extra=+q` in /usr/include
+set tags+=/usr/include/tags
 
 " Zoom / Restore window.
 " Whether Maximizer should set default mappings or not
@@ -260,6 +262,8 @@ set list
 set listchars=tab:>-,trail:.
 " Not display above list
 nmap <leader>l :set list!<CR>
+" set cursor line
+set cursorline cursorcolumn
 
 " Other
 " set nobackup
