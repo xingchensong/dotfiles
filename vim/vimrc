@@ -71,6 +71,10 @@ Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown' " Markdown语法高
 " This Vim plugin will help switching between companion files (e.g. .h and .cpp files)
 Plug 'https://github.com.cnpmjs.org/derekwyatt/vim-fswitch'
 
+" session
+Plug 'https://github.com.cnpmjs.org/tpope/vim-obsession'
+Plug 'https://github.com.cnpmjs.org/dhruvasagar/vim-prosession'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
@@ -175,6 +179,10 @@ let g:vim_markdown_frontmatter=1
 
 " Vim-markdown-toc 取消储存时自动更新目录
 let g:vmt_auto_update_on_save = 0
+
+
+" session
+let g:prosession_dir = expand('~/.vim/session/')
 
 " -------------------------------------------------------------------------------
 " Common
