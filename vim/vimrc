@@ -68,6 +68,9 @@ Plug 'https://github.com.cnpmjs.org/mzlogin/vim-markdown-toc' " 自动在当前�
 Plug 'https://github.com.cnpmjs.org/godlygeek/tabular' "必要插件，安装在vim-markdown前面
 Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown' " Markdown语法高亮 段落折叠，查看目录，段间跳转
 
+" This Vim plugin will help switching between companion files (e.g. .h and .cpp files)
+Plug 'https://github.com.cnpmjs.org/derekwyatt/vim-fswitch'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 filetype on
@@ -215,6 +218,9 @@ function RToc()
   let lnum=line('.')
   execute lstart.",".lnum."g/           /d"
 endfunction
+
+" 同伴文件*.cpp 和 *.h 切换
+nmap <silent> <Leader>sw :FSHere<cr>
 
 " -------------------------------------------------------------------------------
 " Common
