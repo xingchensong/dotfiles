@@ -81,10 +81,11 @@ call plug#end()            " required
 filetype on
 filetype plugin indent on    " loading the plugin/indent files for specific file types
 
+" fzf: https://segmentfault.com/a/1190000016186540
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
-" open selected file in new tab (vsplited/hsplited)
-let g:fzf_action = { 'enter': 'vsplit' , '=': 'split', 't': 'tabedit'}
+" open selected file in new tab (vsplited/hsplited) or buffer
+let g:fzf_action = { 'enter': 'vsplit' , '=': 'split', 't': 'tabedit', 'b': 'edit'}
 
 " gutentags will stop recursing to the upper directory when it encounters these file/dir names
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
@@ -427,3 +428,5 @@ map <buffer> <S-e> :w<CR>:!/usr/bin/env python3 % <CR>
 " Not display above list
 nmap <leader>l :set list!<CR>
 
+" fzf search
+nmap <C-p> :FZF 
