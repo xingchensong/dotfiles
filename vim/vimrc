@@ -10,7 +10,13 @@ Plug 'https://github.com.cnpmjs.org/junegunn/vim-easy-align'
 " calls any arbitrary Git command in vim
 Plug 'https://github.com.cnpmjs.org/tpope/vim-fugitive'
 " tree dir
-Plug 'https://github.com.cnpmjs.org/preservim/nerdtree'
+Plug 'https://github.com.cnpmjs.org/preservim/nerdtree' |
+      \ Plug 'https://github.com.cnpmjs.org/Xuyuanp/nerdtree-git-plugin'
+" Plug 'https://github.com.cnpmjs.org/ryanoasis/vim-devicons'
+" Plug 'https://github.com.cnpmjs.org/ryanoasis/nerd-fonts.git' cd zsh && ./install.sh
+Plug 'https://github.com.cnpmjs.org/tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'https://github.com.cnpmjs.org/scrooloose/nerdtree-project-plugin'
+Plug 'https://github.com.cnpmjs.org/PhilRunninger/nerdtree-visual-selection'
 " fuzzy file finder
 Plug 'https://github.com.cnpmjs.org/junegunn/fzf'
 " auto-complete (deprecated, use `sudo pacman -S youcompleteme..` instead)
@@ -128,6 +134,7 @@ let g:airline#extensions#tabline#formatter = 'default'
 " do not count withspace
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
+let g:airline_powerline_fonts = 0
 
 " auto-complete
 let g:deoplete#enable_at_startup = 1
@@ -181,9 +188,22 @@ let g:vim_markdown_frontmatter=1
 " Vim-markdown-toc 取消储存时自动更新目录
 let g:vmt_auto_update_on_save = 0
 
-
 " session
 let g:prosession_dir = expand('~/.vim/session/')
+
+" nerdtree-git-plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
 
 " -------------------------------------------------------------------------------
 " Common
@@ -334,8 +354,20 @@ autocmd FileType sh setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType python,java,c,cc,cpp,h setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType vim setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-" auto-close NERTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+      \ quit | endif
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * silent NERDTreeMirror
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 "为python和shell等添加注释
 autocmd FileType python,shell,coffee set commentstring=#\ %s
