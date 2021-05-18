@@ -404,3 +404,10 @@ nmap <leader>6 6gt
 nmap <leader>7 7gt
 nmap <leader>8 8gt
 nmap <leader>9 9gt
+
+" buffer https://harttle.land/2015/11/17/vim-buffer.html
+set wildmenu wildmode=full
+set wildchar=<Tab> wildcharm=<C-Z>
+noremap <c-n> :bn<CR>
+noremap <c-p> :bp<CR>
+
