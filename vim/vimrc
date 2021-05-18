@@ -21,7 +21,7 @@ Plug 'https://github.com.cnpmjs.org/PhilRunninger/nerdtree-visual-selection'
 Plug 'https://github.com.cnpmjs.org/junegunn/fzf'
 " auto-complete (deprecated, use `sudo pacman -S youcompleteme..` instead)
 "Plug 'https://github.com.cnpmjs.org/ycm-core/YouCompleteMe'
-if has('nvim') " need 'pip3 install --user pynvim neovim' and vim compiled via python3
+if has('nvim') " need 'pip3 install --user pynvim neovim' (maybe sudo) and vim compiled via python3
   Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim'
@@ -80,6 +80,9 @@ Plug 'https://github.com.cnpmjs.org/derekwyatt/vim-fswitch'
 " session
 Plug 'https://github.com.cnpmjs.org/tpope/vim-obsession'
 Plug 'https://github.com.cnpmjs.org/dhruvasagar/vim-prosession'
+
+" cpp debugging, need vim8.2+
+Plug 'https://github.com.cnpmjs.org/puremourning/vimspector'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
