@@ -73,38 +73,15 @@ Plug 'https://github.com.cnpmjs.org/derekwyatt/vim-fswitch'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
+
 filetype on
 filetype plugin indent on    " loading the plugin/indent files for specific file types
-
-" bind <F2> to open/close NERTree
-map <F2> :NERDTreeToggle<CR>
-" auto-close NERTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
 " open selected file in new tab (vsplited/hsplited)
 let g:fzf_action = { 'enter': 'vsplit' , '=': 'split', 't': 'tabedit'}
 
-" comment
-map <leader>c :Commentary<CR>
-"为python和shell等添加注释
-autocmd FileType python,shell,coffee set commentstring=#\ %s
-"修改注释风格
-autocmd FileType java,c,cpp set commentstring=//\ %s
-
-" rainbow always on
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-" auto-pep8 map to <F8>
-autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-
-" settings for auto-jump [https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/]
-" tag list window
-map <silent> <F3> :TlistToggle<cr>
 " gutentags will stop recursing to the upper directory when it encounters these file/dir names
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 " The name of the generated data file
@@ -158,8 +135,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Quickfix window for background runing
 let g:asyncrun_open = 8
-" 设置 F5 打开/关闭 Quickfix 窗口
-nnoremap <F5> :call asyncrun#quickfix_toggle(6)<cr>
 
 "" ale cppcheck
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
@@ -185,13 +160,6 @@ let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
-nmap <Leader>s :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
 let g:ale_linters_explicit = 1  " 只显示运行ale_linters的文件
 let g:ale_completion_delay = 500
 let g:ale_echo_delay = 20
@@ -201,30 +169,19 @@ let g:ale_lint_on_text_changed = 'normal'  " 防止YCM不停补全
 let g:ale_lint_on_insert_leave = 1
 let g:ale_set_highlights = 0
 
-" vim-signify
-set signcolumn=yes  " 强制显示侧边栏，防止时有时无
-
 " markdown 开启latex公式 和 YAML语法
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter=1
 
 " Vim-markdown-toc 取消储存时自动更新目录
 let g:vmt_auto_update_on_save = 0
-" 自动找到较低的目录层级，然后删除（否则自动生成的目录层级太多）
-function RToc()
-  exe "/-toc .* -->"
-  let lstart=line('.')
-  exe "/-toc -->"
-  let lnum=line('.')
-  execute lstart.",".lnum."g/           /d"
-endfunction
-
-" 同伴文件*.cpp 和 *.h 切换
-nmap <silent> <Leader>sw :FSHere<cr>
 
 " -------------------------------------------------------------------------------
 " Common
 " -------------------------------------------------------------------------------
+
+" vim-signify
+set signcolumn=yes  " 强制显示侧边栏，防止时有时无
 
 " scheme
 set termguicolors
@@ -264,8 +221,6 @@ set showmode  " Show the current mode
 " Display tab and trail space
 set list
 set listchars=tab:>-,trail:.
-" Not display above list
-nmap <leader>l :set list!<CR>
 
 " Other
 " set nobackup
@@ -299,6 +254,15 @@ set scrolloff=50
 " Enhanced
 " -------------------------------------------------------------------------------
 
+" 自动找到较低的目录层级，然后删除（否则自动生成的目录层级太多）
+function RToc()
+  exe "/-toc .* -->"
+  let lstart=line('.')
+  exe "/-toc -->"
+  let lnum=line('.')
+  execute lstart.",".lnum."g/           /d"
+endfunction
+
 " remember last edit position
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 autocmd BufReadPost *
@@ -307,9 +271,6 @@ autocmd BufReadPost *
                 \ endif
 
 au BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown  " .md default is modula2
-
-" Execute python file being edited with <Shift> + e:
-map <buffer> <S-e> :w<CR>:!/usr/bin/env python3 % <CR>
 
 " Auto add head info
 " .py file auto add header
@@ -364,6 +325,23 @@ autocmd FileType sh setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType python,java,c,cc,cpp,h setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType vim setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
+" auto-close NERTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+
+"为python和shell等添加注释
+autocmd FileType python,shell,coffee set commentstring=#\ %s
+"修改注释风格
+autocmd FileType java,c,cpp set commentstring=//\ %s
+
+" rainbow always on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" auto-pep8 map to <F8>
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+
 " -------------------------------------------------------------------------------
 " Bind Keys
 " -------------------------------------------------------------------------------
@@ -410,4 +388,34 @@ set wildmenu wildmode=full
 set wildchar=<Tab> wildcharm=<C-Z>
 noremap <c-n> :bn<CR>
 noremap <c-p> :bp<CR>
+
+" bind <F2> to open/close NERTree
+map <F2> :NERDTreeToggle<CR>
+
+" comment
+map <leader>c :Commentary<CR>
+
+" settings for auto-jump [https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/]
+" tag list window
+map <silent> <F3> :TlistToggle<cr>
+
+"asyncrun: 设置 F5 打开/关闭 Quickfix 窗口
+nnoremap <F5> :call asyncrun#quickfix_toggle(6)<cr>
+
+"ale: 普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+"<Leader>s触发/关闭语法检查
+nmap <Leader>s :ALEToggle<CR>
+"<Leader>d查看错误或警告的详细信息
+nmap <Leader>d :ALEDetail<CR>
+
+" 同伴文件*.cpp 和 *.h 切换
+nmap <silent> <Leader>sw :FSHere<cr>
+
+" Execute python file being edited with <Shift> + e:
+map <buffer> <S-e> :w<CR>:!/usr/bin/env python3 % <CR>
+
+" Not display above list
+nmap <leader>l :set list!<CR>
 
