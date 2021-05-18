@@ -6,67 +6,67 @@
 set rtp+=~/.vim/autoload/plug.vim
 call plug#begin('~/.vim/vim_plug')
 " easy alignment
-Plug 'junegunn/vim-easy-align'
+Plug 'https://github.com.cnpmjs.org/junegunn/vim-easy-align'
 " calls any arbitrary Git command in vim
-Plug 'tpope/vim-fugitive'
+Plug 'https://github.com.cnpmjs.org/tpope/vim-fugitive'
 " tree dir
-Plug 'preservim/nerdtree'
+Plug 'https://github.com.cnpmjs.org/preservim/nerdtree'
 " fuzzy file finder
-Plug 'junegunn/fzf'
+Plug 'https://github.com.cnpmjs.org/junegunn/fzf'
 " auto-complete (deprecated, use `sudo pacman -S youcompleteme..` instead)
-"Plug 'ycm-core/YouCompleteMe'
+"Plug 'https://github.com.cnpmjs.org/ycm-core/YouCompleteMe'
 if has('nvim') " need 'pip3 install --user pynvim neovim' and vim compiled via python3
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim'
+  Plug 'https://github.com.cnpmjs.org/roxma/nvim-yarp'
+  Plug 'https://github.com.cnpmjs.org/roxma/vim-hug-neovim-rpc'
 endif
 " template
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'https://github.com.cnpmjs.org/SirVer/ultisnips'
+Plug 'https://github.com.cnpmjs.org/honza/vim-snippets'
 " deoplete python, need `pip3 install jedi --user` first
-Plug 'zchee/deoplete-jedi'
+Plug 'https://github.com.cnpmjs.org/zchee/deoplete-jedi'
 " fast comment
-Plug 'preservim/nerdcommenter'
+Plug 'https://github.com.cnpmjs.org/preservim/nerdcommenter'
 " rainbow
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'https://github.com.cnpmjs.org/kien/rainbow_parentheses.vim'
 " auto-pair
-Plug 'jiangmiao/auto-pairs'
+Plug 'https://github.com.cnpmjs.org/jiangmiao/auto-pairs'
 " auto-pep8 for python, need `pip3 install --user autopep8` first
-Plug 'tell-k/vim-autopep8'
+Plug 'https://github.com.cnpmjs.org/tell-k/vim-autopep8'
 " indent line for python
-Plug 'Yggdroot/indentLine'
+Plug 'https://github.com.cnpmjs.org/Yggdroot/indentLine'
 " auto-jump
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'vim-scripts/taglist.vim'
+Plug 'https://github.com.cnpmjs.org/ludovicchabant/vim-gutentags'
+Plug 'https://github.com.cnpmjs.org/vim-scripts/taglist.vim'
 " zoom wimdow
-Plug 'szw/vim-maximizer'
+Plug 'https://github.com.cnpmjs.org/szw/vim-maximizer'
 " airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline'
+Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline-themes'
 " background process runing
-Plug 'skywind3000/asyncrun.vim'
+Plug 'https://github.com.cnpmjs.org/skywind3000/asyncrun.vim'
 " cpp check syntax, need `sudo apt-get install clang ctags` first | cpp highlight |
 " .h .cpp exchange (:A :AV :AS) | cpp format (:ClangFormat) | deoplete cpp
-Plug 'w0rp/ale'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vim-scripts/a.vim'
-Plug 'rhysd/vim-clang-format'
-Plug 'Shougo/deoplete-clangx'
+Plug 'https://github.com.cnpmjs.org/w0rp/ale'
+Plug 'https://github.com.cnpmjs.org/octol/vim-cpp-enhanced-highlight'
+Plug 'https://github.com.cnpmjs.org/vim-scripts/a.vim'
+Plug 'https://github.com.cnpmjs.org/rhysd/vim-clang-format'
+Plug 'https://github.com.cnpmjs.org/Shougo/deoplete-clangx'
 " sidebar
-Plug 'mhinz/vim-signify'
+Plug 'https://github.com.cnpmjs.org/mhinz/vim-signify'
 " comment
-Plug 'tpope/vim-commentary'
+Plug 'https://github.com.cnpmjs.org/tpope/vim-commentary'
 " If you don't have nodejs and yarn
 " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
 " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'https://github.com.cnpmjs.org/iamcco/mathjax-support-for-mkdp'
+Plug 'https://github.com.cnpmjs.org/iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " markdown setting
-Plug 'mzlogin/vim-markdown-toc' " 自动在当前光标生成目录的插件
-Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
-Plug 'plasticboy/vim-markdown' " Markdown语法高亮 段落折叠，查看目录，段间跳转
+Plug 'https://github.com.cnpmjs.org/mzlogin/vim-markdown-toc' " 自动在当前光标生成目录的插件
+Plug 'https://github.com.cnpmjs.org/godlygeek/tabular' "必要插件，安装在vim-markdown前面
+Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown' " Markdown语法高亮 段落折叠，查看目录，段间跳转
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -343,7 +343,7 @@ function HeaderH()
     call append(2,  "#ifndef _".toupper(expand("%:t:r"))."_H")
     call append(3, "#define _".toupper(expand("%:t:r"))."_H")
     call append(4, "")
-    call append(5, "#endif //".toupper(expand("%:t:r"))."_H")
+    call append(5, "#endif  // ".toupper(expand("%:t:r"))."_H")
     normal G
 endf
 autocmd bufnewfile *.h,*.hpp call HeaderH()
