@@ -47,7 +47,7 @@ Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline'
 Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline-themes'
 " background process runing
 Plug 'https://github.com.cnpmjs.org/skywind3000/asyncrun.vim'
-" cpp check syntax, need `sudo apt-get install clang ctags` first | cpp highlight |
+" cpp check syntax, need `sudo apt-get install clang ctags && pip install cpplint` first | cpp highlight |
 " .h .cpp exchange (:A :AV :AS) | cpp format (:ClangFormat) | deoplete cpp
 Plug 'https://github.com.cnpmjs.org/w0rp/ale'
 Plug 'https://github.com.cnpmjs.org/octol/vim-cpp-enhanced-highlight'
@@ -161,18 +161,18 @@ nnoremap <F5> :call asyncrun#quickfix_toggle(6)<cr>
 "" ale cppcheck
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
-            \ 'c': ['gcc', 'clang'],
-            \ 'cpp': ['g++', 'clang'],
+            \ 'c': ['cpplint', 'clang', 'gcc'],
+            \ 'cpp': ['cpplint', 'clang', 'g++'],
             \ 'python3': ['pylint'],
             \ }
-let g:ale_c_gcc_options = '-Wall -O2 -std=c99
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99 -isystem
             \ -I .
-            \ -I /usr/include'
-let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++11
+            \ -I /usr/include
+            \ -I /usr/local/include'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++11 -isystem
             \ -I .
-            \ -I /usr/include'
-let g:ale_c_cppcheck_options = ''
-let g:ale_cpp_cppcheck_options = ''
+            \ -I /usr/include
+            \ -I /usr/local/include'
 "自定义error和warning图标
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
