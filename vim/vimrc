@@ -431,6 +431,7 @@ set wildmenu wildmode=full
 set wildchar=<Tab> wildcharm=<C-Z>
 noremap <c-n> :bn<CR>
 noremap <c-m> :bp<CR>
+nmap <c-c> :bdelete<CR>
 
 " bind <F2> to open/close NERTree
 map <F2> :NERDTreeToggle<CR>
