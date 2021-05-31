@@ -77,12 +77,12 @@ Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown' " Markdown语法高
 " This Vim plugin will help switching between companion files (e.g. .h and .cpp files)
 Plug 'https://github.com.cnpmjs.org/derekwyatt/vim-fswitch'
 
-" session
-Plug 'https://github.com.cnpmjs.org/tpope/vim-obsession'
-Plug 'https://github.com.cnpmjs.org/dhruvasagar/vim-prosession'
-
 " cpp debugging, need vim8.2+
 Plug 'https://github.com.cnpmjs.org/puremourning/vimspector'
+
+" This plugin provides a start screen for Vim and Neovim.
+Plug 'https://github.com.cnpmjs.org/itchyny/vim-gitbranch'
+Plug 'https://github.com.cnpmjs.org/mhinz/vim-startify'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -191,9 +191,6 @@ let g:vim_markdown_frontmatter=1
 " Vim-markdown-toc 取消储存时自动更新目录
 let g:vmt_auto_update_on_save = 0
 
-" session
-let g:prosession_dir = expand('~/.vim/session/')
-
 " nerdtree-git-plugin
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'✹',
@@ -207,6 +204,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Clean'     :'✔︎',
                 \ 'Unknown'   :'?',
                 \ }
+" startify
+let g:startify_session_dir = expand('~/.vim/session')
 
 " -------------------------------------------------------------------------------
 " Common
@@ -234,7 +233,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set smarttab
-"set expandtab  " Use the space to instead of tab
+set expandtab  " Use the space to instead of tab
 set autoindent  " Copy indent from current line when starting a new line
 set smartindent " auto indent
 set cindent     " auto indent for cpp files
@@ -357,12 +356,6 @@ autocmd FileType sh setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType python,java,c,cc,cpp,h setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab
 autocmd FileType vim setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-" Start NERDTree. If a file is specified, move the cursor to its window.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " Open the existing NERDTree on each new tab.
@@ -384,6 +377,35 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " auto-pep8 map to <F8>
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+
+" returns all modified files of the current git repo
+" `2>/dev/null` makes the command fail quietly, so that when we are not
+" in a git repo, the list will be empty
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+" Use NERDTree bookmarks
+let NERDTreeShowBookmarks = 1
+let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
+" Display NERDTree bookmarks as a separate list
+" Read ~/.NERDTreeBookmarks file and takes its second column
+function! s:nerdtreeBookmarks()
+    let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+    let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    return map(bookmarks, "{'line': v:val, 'path': v:val}")
+endfunction
+let g:startify_lists = [
+\  { 'type': 'sessions',  'header': ['   Sessions']       },
+\  { 'type': 'files',     'header': ['   MRU Files']            },
+\  { 'type': function('s:gitModified'),  'header': ['   git modified']},
+\  { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+\  { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
+\  { 'type': 'commands', 'header': [ '   Commands' ] },
+\  { 'type': function('helpers#startify#listcommits'), 'header': [ 'Recent Commits' ] },
+\ ]
+cabbrev SClose call helpers#startify#stopsession()
+cabbrev SDelete call helpers#startify#deletesession()
 
 " -------------------------------------------------------------------------------
 " Bind Keys
