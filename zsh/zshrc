@@ -121,12 +121,14 @@ if git --version > /dev/null 2>&1; then
    alias gmm='git merge master'
 fi
 
-# ls aliases
+# ls aliases for linux (macos use bsd ls, which does not have --color option)
 export LSCOLORS=Exfxcxdxbxegedabagacad
-alias ls="ls --color"
-alias ll="ls -l --color"
-alias la="ls -la --color"
-alias lsd="ls -lF -color | grep --color=never '^d'"
+if [[ $(uname) != Darwin ]]; then
+  alias ls="ls --color"
+  alias ll="ls -l --color"
+  alias la="ls -la --color"
+  alias lsd="ls -lF -color | grep --color=never '^d'"
+fi
 
 # grep aliases
 alias grep='grep --color=auto'
