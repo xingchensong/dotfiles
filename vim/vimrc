@@ -309,7 +309,7 @@ au BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown  " .md default
 function HeaderPython()
     call setline(1, "#!/usr/bin/env python3")
     call append(1,  "# -*- coding: utf-8 -*-")
-    call append(2,  "# Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
+    call append(2,  "# Copyright [" . strftime('%Y-%m-%d', localtime()) . "] <sxc19@mails.tsinghua.edu.cn, Xingchen Song>")
     normal G
     normal o
 endf
@@ -318,7 +318,7 @@ autocmd bufnewfile *.py call HeaderPython()
 " .sh file auto add header
 function HeaderBash()
     call setline(1, "#!/bin/bash")
-    call append(1,  "# Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
+    call append(1,  "# Copyright [" . strftime('%Y-%m-%d', localtime()) . "] <sxc19@mails.tsinghua.edu.cn, Xingchen Song>")
     normal G
     normal o
 endf
@@ -326,10 +326,10 @@ autocmd bufnewfile *.sh call HeaderBash()
 
 " .cpp file auto add header
 function HeaderCpp()
-    call setline(1,  "// Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
-    call append(1, "")
-    call append(2, "#include <bits/stdc++.h>")
-    call append(3, "using namespace std;")
+    call setline(1,  "// Copyright [" . strftime('%Y-%m-%d', localtime()) . "] <sxc19@mails.tsinghua.edu.cn, Xingchen Song>")
+    call append(1,   "")
+    call append(2,   "#include <bits/stdc++.h>")
+    call append(3,   "using namespace std;")
     normal G
     normal o
 endf
@@ -337,12 +337,12 @@ autocmd bufnewfile *.cc,*.cpp call HeaderCpp()
 
 " .h file auto add header
 function HeaderH()
-    call setline(1,  "// Xingchen Song @ " . strftime('%Y-%m-%d', localtime()))
-    call append(1, "")
-    call append(2,  "#ifndef _".toupper(expand("%:t:r"))."_H")
-    call append(3, "#define _".toupper(expand("%:t:r"))."_H")
-    call append(4, "")
-    call append(5, "#endif  // ".toupper(expand("%:t:r"))."_H")
+    call setline(1,  "// Copyright [" . strftime('%Y-%m-%d', localtime()) . "] <sxc19@mails.tsinghua.edu.cn, Xingchen Song>")
+    call append(1,   "")
+    call append(2,   "#ifndef ".toupper(expand("%:t:r"))."_H_")
+    call append(3,   "#define ".toupper(expand("%:t:r"))."_H_")
+    call append(4,   "")
+    call append(5,   "#endif  // ".toupper(expand("%:t:r"))."_H_")
     normal G
 endf
 autocmd bufnewfile *.h,*.hpp call HeaderH()
