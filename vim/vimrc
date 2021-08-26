@@ -109,6 +109,7 @@ if !isdirectory(s:vim_tags)
 endif
 " Configure ctags parameters
 let g:gutentags_ctags_extra_args = ['--fields=+niazSlm', '--extra=+q']
+let g:gutentags_ctags_extra_args = ['--recurse=yes', '--exclude=.git', '--exclude=fc_base', '--exclude=build']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px', '--python-kinds=-i']
 " generate new tags if you just finished writing a new file
