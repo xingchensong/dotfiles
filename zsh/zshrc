@@ -263,7 +263,8 @@ if [[ $(hostname -f) == LAPTOP-* ]]; then
 fi
 
 if [[ $(hostname -f) == SongXingchen-PC* ]]; then
-  alias python='python3'
+  export PATH=$PATH:$HOME/tools/go/bin
+  source ~/proxy.sh
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
   __conda_setup="$('/home/xcsong/tools/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
