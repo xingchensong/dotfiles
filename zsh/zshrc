@@ -262,7 +262,7 @@ if [[ $(hostname -f) == LAPTOP-* ]]; then
   # <<< conda initialize <<<
 fi
 
-if [[ $(hostname -f) == SongXingchen-PC* ]]; then
+if [[ $(hostname -f) == SongXingchen-PC* || $(hostname -f) == songxingchen.hobot.cc ]]; then
   export PATH=$PATH:$HOME/tools/go/bin
   source ~/proxy.sh
   # >>> conda initialize >>>
