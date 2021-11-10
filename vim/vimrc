@@ -94,7 +94,7 @@ filetype plugin indent on    " loading the plugin/indent files for specific file
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
 " open selected file in new tab (vsplited/hsplited) or buffer
-let g:fzf_action = { 'enter': 'vsplit' , '=': 'split', 't': 'tabedit', 'b': 'edit'}
+let g:fzf_action = { 'enter': 'edit' , '-': 'split', 'T': 'tabedit', 'V': 'vsplit'}
 
 " gutentags will stop recursing to the upper directory when it encounters these file/dir names
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
