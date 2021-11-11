@@ -36,7 +36,7 @@ set -e
 # Default settings
 ZSH=${ZSH:-~/.oh-my-zsh}
 REPO=${REPO:-ohmyzsh/ohmyzsh}
-REMOTE=${REMOTE:-https://github.com/${REPO}.git}
+REMOTE=${REMOTE:-https://github.com.cnpmjs.org/${REPO}.git}
 BRANCH=${BRANCH:-master}
 
 # Other options
