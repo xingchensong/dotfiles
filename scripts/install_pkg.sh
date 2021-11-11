@@ -19,5 +19,5 @@
 wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
 # update vim (>= 8.2)
 conda update -n base conda -y && conda install -y pip
-conda install -c conda-forge vim -y
-pip3 install --user pynvim neovim jedi autopep8 cpplint
+conda install -c conda-forge vim zsh -y
+pip3 install --user pynvim neovim jedi autopep8 cpplint -i https://pypi.tuna.tsinghua.edu.cn/simple
