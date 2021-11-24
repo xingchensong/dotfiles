@@ -157,7 +157,7 @@ let g:asyncrun_open = 8
 let g:ale_linters = {
             \ 'c': ['clang', 'gcc'],
             \ 'cpp': ['cpplint', 'clang++', 'g++'],
-            \ 'python': ['flake8', 'pylint'],
+            \ 'python': ['flake8'],
             \ 'sh': ['shellcheck'],
             \ 'cmake': ['cmakelint']
             \ }
@@ -181,8 +181,8 @@ let g:ale_cpp_cpplint_options = '-Wall -O2 -std=c++11 -isystem
 let g:ale_python_auto_pipenv = 1
 let g:ale_python_auto_poetry = 1
 let g:ale_python_flake8_auto_pipenv = 1
-let g:ale_python_pylint_auto_pipenv = 1
-let g:ale_python_pylint_use_msg_id = 1
+"let g:ale_python_pylint_auto_pipenv = 1
+"let g:ale_python_pylint_use_msg_id = 1
 "自定义error和warning图标
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
@@ -472,6 +472,10 @@ set wildchar=<Tab> wildcharm=<C-Z>
 noremap <c-Right> :bn<CR>
 noremap <c-Left> :bp<CR>
 nmap <c-c> :bdelete<CR>
+
+" jump to prev/next git diff
+nmap <c-Up> [c
+nmap <c-Down> ]c
 
 " bind <F2> to open/close NERTree
 map <F2> :NERDTreeToggle<CR>
