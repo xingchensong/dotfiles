@@ -21,3 +21,8 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
 conda update -n base conda -y && conda install -y pip
 conda install -c conda-forge vim zsh shellcheck -y
 pip3 install --user pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8==3.8.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
+# autojump
+git clone git://github.com/wting/autojump.git
+cd autojump && ./install.py
+# tmux 2.6
+conda install -c riipl-org tmux

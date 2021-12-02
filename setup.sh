@@ -67,6 +67,7 @@ cp $CURRENT_DIR/vim/vim-plug/plug.vim $HOME/.vim/autoload
 # 4. set paths
 ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
 ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
+ln -sf $CURRENT_DIR/tmux/tmux.conf $HOME/.tmux.conf
 ln -sf $PWD/vim/snippets $HOME/.vim/UltiSnips
 # ubuntu20 proxy
 if [[ $(hostname -f) == ubuntu20 ]]; then
@@ -80,7 +81,7 @@ else
 fi
 
 # 5. launch zsh
-echo "DONE"
 echo "export PATH=$HOME/.local/bin:/usr/bin:$PATH" >> ~/.bashrc
 echo "export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
-echo "zsh" >> ~/.bashrc
+echo "exec zsh -o NO_GLOBAL_RCS" >> ~/.bashrc
+echo "DONE"

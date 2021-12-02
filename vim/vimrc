@@ -232,7 +232,14 @@ let g:startify_session_dir = expand('~/.vim/session')
 set signcolumn=yes  " 强制显示侧边栏，防止时有时无
 
 " scheme
-set termguicolors
+if has("termguicolors")
+  " fix bug for vim
+  set t_8f=[38;2;%lu;%lu;%lum
+  set t_8b=[48;2;%lu;%lu;%lum
+  set t_Co=256
+  " enable true color
+  set termguicolors
+endif
 set background=dark
 if v:version < 801
  let g:solarized_termcolors=256
@@ -264,7 +271,6 @@ set showmatch  " When a bracket is inserted, briefly jump to the matching one
 
 " Display
 set showmode  " Show the current mode
-"set t_Co=256  " If under tty, use 256
 
 " Display tab and trail space
 set list
