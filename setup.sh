@@ -51,7 +51,7 @@ fi
 cp -R zsh/zsh-autosuggestions  $HOME/.oh-my-zsh/custom/plugins/
 cp -R zsh/zsh-syntax-highlighting  $HOME/.oh-my-zsh/custom/plugins/
 
-# 2. vim && vim-plug
+# 2. vim && vim-plug, tmux && tmux-plug
 mkdir -p $HOME/.vim/colors
 mkdir -p $HOME/.vim/backup
 cp vim/color/*.vim $HOME/.vim/colors/
@@ -60,6 +60,9 @@ if [ ! -f "$HOME/.viminfo" ]; then
 fi
 mkdir -p $HOME/.vim/autoload
 cp $CURRENT_DIR/vim/vim-plug/plug.vim $HOME/.vim/autoload
+mkdir -p $HOME/.tmux
+mkdir -p $HOME/.tmux/plugins
+cp -R $CURRENT_DIR/tmux/tpm $HOME/.tmux/plugins
 
 # 3. python3-pip clang ctags
 # see scripts/install_pkg.sh

@@ -239,6 +239,8 @@ if has("termguicolors")
   set t_Co=256
   " enable true color
   set termguicolors
+  " https://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
+  set t_ut=
 endif
 set background=dark
 if v:version < 801
