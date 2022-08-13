@@ -268,6 +268,8 @@ fi
 if [[ $(hostname -f) == SongXingchen-PC* || $(hostname -f) == songxingchen*.hobot.cc ]]; then
   export PATH=$PATH:$HOME/tools/go/bin
   source ~/proxy.sh
+  # https://github.com/conda/conda/issues/9392#issuecomment-617345019
+  unset CONDA_SHLVL
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
   __conda_setup="$('/home/xcsong/tools/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"

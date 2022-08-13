@@ -62,7 +62,7 @@ mkdir -p $HOME/.vim/autoload
 cp $CURRENT_DIR/vim/vim-plug/plug.vim $HOME/.vim/autoload
 mkdir -p $HOME/.tmux
 mkdir -p $HOME/.tmux/plugins
-cp -R $CURRENT_DIR/tmux/tpm $HOME/.tmux/plugins
+ln -sf $CURRENT_DIR/tmux/tpm $HOME/.tmux/plugins/tpm
 
 # 3. python3-pip clang ctags
 # see scripts/install_pkg.sh
