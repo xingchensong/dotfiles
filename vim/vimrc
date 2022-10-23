@@ -6,83 +6,83 @@
 set rtp+=~/.vim/autoload/plug.vim
 call plug#begin('~/.vim/vim_plug')
 " easy alignment
-Plug 'https://github.com.cnpmjs.org/junegunn/vim-easy-align'
+Plug 'https://github.com/junegunn/vim-easy-align'
 " calls any arbitrary Git command in vim
-Plug 'https://github.com.cnpmjs.org/tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-fugitive'
 " tree dir
-Plug 'https://github.com.cnpmjs.org/preservim/nerdtree' |
-      \ Plug 'https://github.com.cnpmjs.org/Xuyuanp/nerdtree-git-plugin'
-" Plug 'https://github.com.cnpmjs.org/ryanoasis/vim-devicons'
-" Plug 'https://github.com.cnpmjs.org/ryanoasis/nerd-fonts.git' cd zsh && ./install.sh
-Plug 'https://github.com.cnpmjs.org/tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'https://github.com.cnpmjs.org/scrooloose/nerdtree-project-plugin'
-Plug 'https://github.com.cnpmjs.org/PhilRunninger/nerdtree-visual-selection'
+Plug 'https://github.com/preservim/nerdtree' |
+      \ Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin'
+" Plug 'https://github.com/ryanoasis/vim-devicons'
+" Plug 'https://github.com/ryanoasis/nerd-fonts.git' cd zsh && ./install.sh
+Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'https://github.com/scrooloose/nerdtree-project-plugin'
+Plug 'https://github.com/PhilRunninger/nerdtree-visual-selection'
 " fuzzy file finder
-Plug 'https://github.com.cnpmjs.org/junegunn/fzf'
+Plug 'https://github.com/junegunn/fzf'
 " auto-complete (deprecated, use `sudo pacman -S youcompleteme..` instead)
-"Plug 'https://github.com.cnpmjs.org/ycm-core/YouCompleteMe'
+"Plug 'https://github.com/ycm-core/YouCompleteMe'
 if has('nvim') " need 'pip3 install --user pynvim neovim' (maybe sudo) and vim compiled via python3
-  Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'https://github.com.cnpmjs.org/Shougo/deoplete.nvim'
-  Plug 'https://github.com.cnpmjs.org/roxma/nvim-yarp'
-  Plug 'https://github.com.cnpmjs.org/roxma/vim-hug-neovim-rpc'
+  Plug 'https://github.com/Shougo/deoplete.nvim'
+  Plug 'https://github.com/roxma/nvim-yarp'
+  Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
 endif
 " template
-Plug 'https://github.com.cnpmjs.org/SirVer/ultisnips'
-Plug 'https://github.com.cnpmjs.org/honza/vim-snippets'
+Plug 'https://github.com/SirVer/ultisnips'
+Plug 'https://github.com/honza/vim-snippets'
 " deoplete python, need `pip3 install jedi --user` first
-Plug 'https://github.com.cnpmjs.org/zchee/deoplete-jedi'
+Plug 'https://github.com/zchee/deoplete-jedi'
 " fast comment
-Plug 'https://github.com.cnpmjs.org/preservim/nerdcommenter'
+Plug 'https://github.com/preservim/nerdcommenter'
 " rainbow
-Plug 'https://github.com.cnpmjs.org/kien/rainbow_parentheses.vim'
+Plug 'https://github.com/kien/rainbow_parentheses.vim'
 " auto-pair
-Plug 'https://github.com.cnpmjs.org/jiangmiao/auto-pairs'
+Plug 'https://github.com/jiangmiao/auto-pairs'
 " auto-pep8 for python, need `pip3 install --user autopep8` first
-Plug 'https://github.com.cnpmjs.org/tell-k/vim-autopep8'
+Plug 'https://github.com/tell-k/vim-autopep8'
 " indent line for python
-Plug 'https://github.com.cnpmjs.org/Yggdroot/indentLine'
+Plug 'https://github.com/Yggdroot/indentLine'
 " auto-jump
-Plug 'https://github.com.cnpmjs.org/ludovicchabant/vim-gutentags'
-Plug 'https://github.com.cnpmjs.org/vim-scripts/taglist.vim'
+Plug 'https://github.com/ludovicchabant/vim-gutentags'
+Plug 'https://github.com/vim-scripts/taglist.vim'
 " zoom wimdow
-Plug 'https://github.com.cnpmjs.org/szw/vim-maximizer'
+Plug 'https://github.com/szw/vim-maximizer'
 " airline
-Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline'
-Plug 'https://github.com.cnpmjs.org/vim-airline/vim-airline-themes'
+Plug 'https://github.com/vim-airline/vim-airline'
+Plug 'https://github.com/vim-airline/vim-airline-themes'
 " background process runing
-Plug 'https://github.com.cnpmjs.org/skywind3000/asyncrun.vim'
+Plug 'https://github.com/skywind3000/asyncrun.vim'
 " cpp check syntax, need `sudo apt-get install clang ctags && pip install cpplint` first | cpp highlight |
 " .h .cpp exchange (:A :AV :AS) | cpp format (:ClangFormat) | deoplete cpp
-Plug 'https://github.com.cnpmjs.org/w0rp/ale'
-Plug 'https://github.com.cnpmjs.org/octol/vim-cpp-enhanced-highlight'
-Plug 'https://github.com.cnpmjs.org/vim-scripts/a.vim'
-Plug 'https://github.com.cnpmjs.org/rhysd/vim-clang-format'
-Plug 'https://github.com.cnpmjs.org/Shougo/deoplete-clangx'
+Plug 'https://github.com/w0rp/ale'
+Plug 'https://github.com/octol/vim-cpp-enhanced-highlight'
+Plug 'https://github.com/vim-scripts/a.vim'
+Plug 'https://github.com/rhysd/vim-clang-format'
+Plug 'https://github.com/Shougo/deoplete-clangx'
 " sidebar
-Plug 'https://github.com.cnpmjs.org/mhinz/vim-signify'
+Plug 'https://github.com/mhinz/vim-signify'
 " comment
-Plug 'https://github.com.cnpmjs.org/tpope/vim-commentary'
+Plug 'https://github.com/tpope/vim-commentary'
 " If you don't have nodejs and yarn
 " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
 " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
-Plug 'https://github.com.cnpmjs.org/iamcco/mathjax-support-for-mkdp'
-Plug 'https://github.com.cnpmjs.org/iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'https://github.com/iamcco/mathjax-support-for-mkdp'
+Plug 'https://github.com/iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " markdown setting
-Plug 'https://github.com.cnpmjs.org/mzlogin/vim-markdown-toc' " 自动在当前光标生成目录的插件
-Plug 'https://github.com.cnpmjs.org/godlygeek/tabular' "必要插件，安装在vim-markdown前面
-Plug 'https://github.com.cnpmjs.org/plasticboy/vim-markdown' " Markdown语法高亮 段落折叠，查看目录，段间跳转
+Plug 'https://github.com/mzlogin/vim-markdown-toc' " 自动在当前光标生成目录的插件
+Plug 'https://github.com/godlygeek/tabular' "必要插件，安装在vim-markdown前面
+Plug 'https://github.com/plasticboy/vim-markdown' " Markdown语法高亮 段落折叠，查看目录，段间跳转
 
 " This Vim plugin will help switching between companion files (e.g. .h and .cpp files)
-Plug 'https://github.com.cnpmjs.org/derekwyatt/vim-fswitch'
+Plug 'https://github.com/derekwyatt/vim-fswitch'
 
 " cpp debugging, need vim8.2+
-Plug 'https://github.com.cnpmjs.org/puremourning/vimspector'
+Plug 'https://github.com/puremourning/vimspector'
 
 " This plugin provides a start screen for Vim and Neovim.
-Plug 'https://github.com.cnpmjs.org/itchyny/vim-gitbranch'
-Plug 'https://github.com.cnpmjs.org/mhinz/vim-startify'
+Plug 'https://github.com/itchyny/vim-gitbranch'
+Plug 'https://github.com/mhinz/vim-startify'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -158,7 +158,6 @@ let g:ale_linters = {
             \ 'c': ['clang', 'gcc'],
             \ 'cpp': ['cpplint', 'clang++', 'g++'],
             \ 'python': ['flake8'],
-            \ 'sh': ['shellcheck'],
             \ 'cmake': ['cmakelint']
             \ }
 let g:ale_fixers = {

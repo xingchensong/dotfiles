@@ -62,7 +62,7 @@ mkdir -p $HOME/.vim/autoload
 cp $CURRENT_DIR/vim/vim-plug/plug.vim $HOME/.vim/autoload
 mkdir -p $HOME/.tmux
 mkdir -p $HOME/.tmux/plugins
-ln -sf $CURRENT_DIR/tmux/tpm $HOME/.tmux/plugins/tpm
+ln -s $CURRENT_DIR/tmux/tpm $HOME/.tmux/plugins/tpm || echo "tpm exists."
 
 # 3. python3-pip clang ctags
 # see scripts/install_pkg.sh
@@ -71,7 +71,7 @@ ln -sf $CURRENT_DIR/tmux/tpm $HOME/.tmux/plugins/tpm
 ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
 ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
 ln -sf $CURRENT_DIR/tmux/tmux.conf $HOME/.tmux.conf
-ln -sf $PWD/vim/snippets $HOME/.vim/UltiSnips
+ln -s $PWD/vim/snippets $HOME/.vim/UltiSnips || echo "UtilSnips exists."
 # ubuntu20 proxy
 if [[ $(hostname -f) == ubuntu20 ]]; then
     cp $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
