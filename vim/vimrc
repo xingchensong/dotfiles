@@ -84,6 +84,10 @@ Plug 'https://github.com/puremourning/vimspector'
 Plug 'https://github.com/itchyny/vim-gitbranch'
 Plug 'https://github.com/mhinz/vim-startify'
 
+" Color formatter with ANSI escape sequences like \033[31m
+" Usage: vim -R +AnsiEsc file
+Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
