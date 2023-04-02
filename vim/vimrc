@@ -88,6 +88,9 @@ Plug 'https://github.com/mhinz/vim-startify'
 " Usage: vim -R +AnsiEsc file
 Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
 
+" Copilot
+Plug 'https://github.com/github/copilot.vim.git'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
@@ -156,7 +159,7 @@ let g:UltiSnipsEditSplit="vertical"
 " Quickfix window for background runing
 let g:asyncrun_open = 8
 
-"" ale cppcheck
+" ale cppcheck
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
             \ 'c': ['clang', 'gcc'],
@@ -226,6 +229,9 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ }
 " startify
 let g:startify_session_dir = expand('~/.vim/session')
+
+" Copilot proxy
+let g:copilot_proxy = '10.103.20.77:7890'
 
 " -------------------------------------------------------------------------------
 " Common
