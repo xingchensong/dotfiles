@@ -20,6 +20,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
 # update vim (>= 8.2) tmux (>= 2.5)
 conda update -n base conda -y && conda install -y pip
 conda install -c conda-forge vim zsh shellcheck tmux cmake ruby gawk -y
+conda install nodejs -y  # nodejs >= 16.13.1 for copilot.vim
 pip3 install --user pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8==3.8.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
 # autojump
 git clone git://github.com/wting/autojump.git
