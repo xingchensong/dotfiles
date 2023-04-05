@@ -48,12 +48,12 @@ ZSH_DISABLE_COMPFIX="true"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -154,93 +154,21 @@ function mkcd () {
     cd $1
 }
 
-export PATH=$HOME/.local/bin:/usr/bin:$PATH
-export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
-
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
-# cuda
-if [ -d "/usr/local/cuda" ]; then
-  export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-  #export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/lib/openmpi/:/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib
-  export CUDA_HOME=/usr/local/cuda
-  export CFLAGS="-I$CUDA_HOME/include $CFLAGS"
-  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-  #export LIBRARY_PATH=/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib/:$LIBRARY_PATH
-  export CUDA_PATH=$CUDA_HOME
-fi
-
-# mjrc-serverXX
-if [[ $(hostname -f) == mjrc-server* ]]; then
-  export PATH="$PATH:/opt/anaconda/bin:/opt/cuda/bin" # for conda & cuda, set /usr/bin/python > /opt/anaconda/bin/python
-  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib64"
-  export TERMINFO=/usr/share/terminfo/  # for gpustat
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('/opt/anaconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-      eval "$__conda_setup"
-  else
-      if [ -f "/opt/anaconda/etc/profile.d/conda.sh" ]; then
-          . "/opt/anaconda/etc/profile.d/conda.sh"
-      else
-          export PATH="/opt/anaconda/bin:$PATH"
-      fi
-  fi
-  unset __conda_setup
-  # <<< conda initialize <<<
-fi
-
-# ubuntu20
-if [[ $(hostname -f) == ubuntu20 ]]; then
-  export PATH=$HOME/tools/miniconda3/bin:$PATH
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('/home/xcsong/tools/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-      eval "$__conda_setup"
-  else
-      if [ -f "/home/xcsong/tools/miniconda3/etc/profile.d/conda.sh" ]; then
-          . "/home/xcsong/tools/miniconda3/etc/profile.d/conda.sh"
-      else
-          export PATH="/home/xcsong/tools/miniconda3/bin:$PATH"
-      fi
-  fi
-  unset __conda_setup
-  # <<< conda initialize <<<
-fi
-
-# iZwz99mdp65r2jgcgfztayZ
-if [[ $(hostname -f) == iZwz99mdp65r2jgcgfztayZ ]]; then
-  # Install Ruby Gems to ~/gems
-  export GEM_HOME=$HOME/gems
-  export PATH=$HOME/gems/bin:$PATH
-fi
-
-# MSRA cloud server
-if [[ $(hostname -f) == GCR* ]]; then
-  export PYTHONUSERBASE=$HOME/workspace/espnet/tools/python_user_base
-  export PATH=$PATH:$HOME/workspace/espnet/tools/python_user_base/bin
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/workspace/espnet/tools/python_user_base/lib
-fi
-
-if [[ $(hostname -f) == notebook-* ]]; then
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('/workspace/cpfs-data/framework/espnet/tools/anaconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-      eval "$__conda_setup"
-  else
-      if [ -f "/workspace/cpfs-data/framework/espnet/tools/anaconda/etc/profile.d/conda.sh" ]; then
-          . "/workspace/cpfs-data/framework/espnet/tools/anaconda/etc/profile.d/conda.sh"
-      else
-          export PATH="/workspace/cpfs-data/framework/espnet/tools/anaconda//bin:$PATH"
-      fi
-  fi
-  unset __conda_setup
-  # <<< conda initialize <<<
-fi
+# FIXME(xcsong): When to uncomment the following lines ?
+# export PATH=$HOME/.local/bin:/usr/bin:$PATH
+# export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
+# if [ -d "/usr/local/cuda" ]; then
+#   export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+#   #export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/lib/openmpi/:/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib
+#   export CUDA_HOME=/usr/local/cuda
+#   export CFLAGS="-I$CUDA_HOME/include $CFLAGS"
+#   export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+#   #export LIBRARY_PATH=/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib/:$LIBRARY_PATH
+#   export CUDA_PATH=$CUDA_HOME
+# fi
 
 if [[ $(hostname -f) == LAPTOP-* ]]; then
   alias python='python3'
