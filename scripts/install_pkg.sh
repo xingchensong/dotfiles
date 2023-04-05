@@ -17,13 +17,10 @@
 
 # install miniconda3-py3.8
 wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh
-# update vim (>= 8.2) tmux (>= 2.5)
+# update vim (>= 9.0.1425) nodejs (>= 16.13.1) for copilot, tmux (>= 3.3) for xx (?), cmake (>=3.10.1) for c++ projects
 conda update -n base conda -y && conda install -y pip
-conda install -c conda-forge vim zsh shellcheck tmux cmake ruby gawk -y
-conda install nodejs -y  # nodejs >= 16.13.1 for copilot.vim
-pip3 install --user pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8==3.8.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
+conda install -c conda-forge vim=9.0.1425 zsh shellcheck tmux=3.2 cmake=3.22.1 nodejs=16.13.1 ruby gawk -y
+pip3 install pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8 -i https://pypi.tuna.tsinghua.edu.cn/simple
 # autojump
 git clone git://github.com/wting/autojump.git
 cd autojump && ./install.py
-# # tmux 2.6
-# conda install -c riipl-org tmux
