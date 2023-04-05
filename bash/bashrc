@@ -148,7 +148,10 @@ if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
 
-conda_path="${HOME}/tools/miniconda3/bin/conda"
+conda_path="/bucket/output/jfs-hdfs/user/xingchen.song/tools/miniconda3/bin/conda"
+if [ ! -e "${conda_path}" ]; then
+  conda_path="${HOME}/tools/miniconda3/bin/conda"
+fi
 if [ -e "${conda_path}" ]; then
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
