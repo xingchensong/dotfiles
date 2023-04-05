@@ -12,16 +12,56 @@ alias grep='grep --color=auto'
 alias gg='git grep -ni'
 alias phpunit='phpunit --colors'
 alias vimpress="VIMENV=talk vim"
-alias c="composer"
-alias v="vagrant"
-alias d="sudo docker"
 alias biggest="du -h --max-depth=1 | sort -h"
 alias tnn="cd ~/src/github.com/tomnomnom"
 alias :q="exit"
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
-alias j="jobs"
 alias follow="tail -f -n +1"
+
+# vi alias
+alias vi='vim'
+
+# git aliasess
+if git --version > /dev/null 2>&1; then
+   alias gb='git branch'
+   alias gad='git add'
+   alias gc='git checkout'
+   alias gcb='git checkout -b'
+   alias gs='git status'
+   alias gst='git status'
+   alias gcm='git checkout master'
+   alias gpom='git pull origin master'
+   alias gmm='git merge master'
+fi
+
+# ls aliases for linux (macos use bsd ls, which does not have --color option)
+export LSCOLORS=Exfxcxdxbxegedabagacad
+if [[ $(uname) != Darwin ]]; then
+  alias ls="ls --color"
+  alias ll="ls -l --color"
+  alias la="ls -la --color"
+  alias lsd="ls -lF -color | grep --color=never '^d'"
+fi
+
+# grep aliases
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# avoid overwriting another file
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -i'
+
+# cd aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# gpustat aliases
+alias nv='gpustat'
+alias ns='nvidia-smi'
 
 # COLOURS! YAAAY!
 export TERM=xterm-256color
@@ -132,8 +172,8 @@ nameC="${txtcyn}"
 hostC="${txtcyn}"
 pathC="${txtwht}"
 gitC="${txtcyn}"
-pointerC="${txtgrn}"
-normalC="${txtgrn}"
+pointerC="${txtwht}"
+normalC="${txtwht}"
 
 # Red name for root
 if [ "${UID}" -eq "0" ]; then
@@ -141,7 +181,7 @@ if [ "${UID}" -eq "0" ]; then
 fi
 
 # Patent Pending Prompt
-export PS1="${nameC}\u${atC}@${hostC}\h:${pathC}\w${gitC}\$(gitPrompt)${pointerC}▶${normalC} "
+export PS1="${nameC}\u${atC}@${hostC}\h:${pathC}\w${gitC}\$(gitPrompt)${pointerC}\n▶${normalC} "
 
 # Local settings go last
 if [ -f ~/.localrc ]; then
