@@ -28,5 +28,5 @@ conda search cudatoolkit
 conda install cudatoolkit
 pip3 install pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8 -i https://pypi.tuna.tsinghua.edu.cn/simple
 # autojump
-git clone git://github.com/wting/autojump.git
+git clone https://github.com/wting/autojump.git
 cd autojump && ./install.py
