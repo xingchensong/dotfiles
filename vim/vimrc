@@ -91,6 +91,9 @@ Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
 " Copilot
 Plug 'https://github.com/github/copilot.vim.git'
 
+" Debugger
+Plug 'puremourning/vimspector'
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
@@ -232,6 +235,9 @@ let g:startify_session_dir = expand('~/.vim/session')
 
 " Copilot proxy
 let g:copilot_proxy = '10.103.20.77:7890'
+
+" Vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
 
 " -------------------------------------------------------------------------------
 " Common
@@ -505,7 +511,7 @@ map <leader>c :Commentary<CR>
 map <silent> <F3> :TlistToggle<cr>
 
 "asyncrun: 设置 F5 打开/关闭 Quickfix 窗口
-nnoremap <F5> :call asyncrun#quickfix_toggle(6)<cr>
+nnoremap <F1> :call asyncrun#quickfix_toggle(6)<cr>
 
 "ale: 普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
 nmap sp <Plug>(ale_previous_wrap)
@@ -513,7 +519,7 @@ nmap sn <Plug>(ale_next_wrap)
 "<Leader>s触发/关闭语法检查
 nmap <Leader>s :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
+nmap <Leader>e :ALEDetail<CR>
 
 " 同伴文件*.cpp 和 *.h 切换
 nmap <silent> <Leader>sw :FSHere<cr>
@@ -526,3 +532,13 @@ nmap <leader>l :set list!<CR>
 
 " fzf search, map to ctrl+f
 nmap <c-f> :FZF 
+
+" Debug
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+nmap <Leader><F11> <Plug>VimspectorUpFrame
+nmap <Leader><F12> <Plug>VimspectorDownFrame
+nmap <Leader>B     <Plug>VimspectorBreakpoints
+nmap <Leader>D     <Plug>VimspectorDisassemble
