@@ -234,7 +234,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let g:startify_session_dir = expand('~/.vim/session')
 
 " Copilot proxy
-let g:copilot_proxy = '10.103.20.77:7890'
+let g:copilot_proxy = '10.103.20.128:7890'
 
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
