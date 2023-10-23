@@ -89,7 +89,7 @@ Plug 'https://github.com/mhinz/vim-startify'
 Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
 
 " Copilot
-Plug 'https://github.com/github/copilot.vim.git'
+Plug 'https://github.com/github/copilot.vim.git', { 'branch': 'release' }
 
 " Debugger
 Plug 'puremourning/vimspector'
