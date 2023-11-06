@@ -215,7 +215,7 @@ if [[ $(hostname -f) == *-PC* || $(hostname -f) == songxingchen*.hobot.cc || $(w
 fi
 
 if [[ $(hostname -f) == *.hogpu.cc ]]; then
-  export PATH=$PATH:$HOME/tools/go/bin
+  export PATH=$PATH:$HOME/tools/go/bin:/bucket/output/jfs-hdfs/user/xingchen.song/tools/arcanist/bin/
   source ~/proxy.sh
   # https://github.com/conda/conda/issues/9392#issuecomment-617345019
   unset CONDA_SHLVL
