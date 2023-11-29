@@ -23,10 +23,10 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 # # https://anaconda.org/conda-forge/tmux
 # # https://anaconda.org/conda-forge/nodejs
 conda update -n base conda -y && conda install -y pip
-conda install -c conda-forge vim zsh shellcheck tmux cmake nodejs ruby gawk -y
+conda install -c conda-forge git vim zsh shellcheck tmux cmake nodejs ruby gawk -y
 conda search cudatoolkit
 conda install cudatoolkit
-pip3 install pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8 -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8 gpustat nvitop -i https://pypi.tuna.tsinghua.edu.cn/simple
 # autojump
 git clone https://github.com/wting/autojump.git
 cd autojump && ./install.py
