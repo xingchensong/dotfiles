@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export LANG="zh_CN.UTF-8"
+export LC_ALL="zh_CN.UTF-8"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -160,15 +163,26 @@ function mkcd () {
 # FIXME(xcsong): When to uncomment the following lines ?
 # export PATH=$HOME/.local/bin:/usr/bin:$PATH
 # export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
-# if [ -d "/usr/local/cuda" ]; then
-#   export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-#   #export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:/usr/local/lib/openmpi/:/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib
-#   export CUDA_HOME=/usr/local/cuda
-#   export CFLAGS="-I$CUDA_HOME/include $CFLAGS"
-#   export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-#   #export LIBRARY_PATH=/usr/local/nccl_2.4.7-1+cuda10.0_x86_64/lib/:$LIBRARY_PATH
-#   export CUDA_PATH=$CUDA_HOME
-# fi
+cuda_version=12.1
+if [ -d "/bucket/output/jfs-hdfs/user/xingchen.song/tools/cuda/cuda-${cuda_version}" ]; then
+  unset LD_LIBRARY_PATH
+  export CUDA_HOME=/bucket/output/jfs-hdfs/user/xingchen.song/tools/cuda/cuda-${cuda_version}
+  export PATH=$CUDA_HOME/bin:$PATH
+  export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$CUDA_HOME/lib64/stubs:/usr/lib:/usr/lib64:$LD_LIBRARY_PATH
+  # export LD_LIBRARY_PATH=$CUDA_HOME/lib:$LD_LIBRARY_PATH
+  export LD_LIBRARY_PATH=$CUDA_HOME/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+  export CUDAToolkit_ROOT_DIR=$CUDA_HOME
+  export CUDAToolkit_ROOT=$CUDA_HOME
+  export CUDA_TOOLKIT_ROOT_DIR=$CUDA_HOME
+  export CUDA_TOOLKIT_ROOT=$CUDA_HOME
+  export CUDA_BIN_PATH=$CUDA_HOME
+  export CUDA_PATH=$CUDA_HOME
+  export CUDA_INC_PATH=$CUDA_HOME/targets/x86_64-linux
+  export CFLAGS=-I$CUDA_HOME/targets/x86_64-linux/include:$CFLAGS
+  export CXXFLAGS=-I$CUDA_HOME/targets/x86_64-linux/include:$CFLAGS
+  export LDFLAGS=-L$CUDA_HOME/lib64:$CUDA_HOME/lib64/stubs:/usr/lib:/usr/lib64:$LDFLAGS
+  export CUDAToolkit_TARGET_DIR=$CUDA_HOME/targets/x86_64-linux
+fi
 
 if [[ $(hostname -f) == LAPTOP-* ]]; then
   alias python='python3'
@@ -193,7 +207,7 @@ if [[ $(hostname -f) == LAPTOP-* ]]; then
   # <<< conda initialize <<<
 fi
 
-if [[ $(hostname -f) == *-PC* || $(hostname -f) == songxingchen*.hobot.cc || $(whoami) == xcsong ]]; then
+if [[ $(hostname -f) == *-PC* || $(whoami) == xcsong ]]; then
   export PATH=$PATH:$HOME/tools/go/bin
   source ~/proxy.sh
   # https://github.com/conda/conda/issues/9392#issuecomment-617345019
@@ -216,7 +230,7 @@ fi
 
 if [[ $(hostname -f) == *.hogpu.cc ]]; then
   export PATH=$PATH:$HOME/tools/go/bin:/bucket/output/jfs-hdfs/user/xingchen.song/tools/arcanist/bin/
-  source ~/proxy.sh
+  source /bucket/output/jfs-hdfs/user/xingchen.song/tools/proxy.sh
   # https://github.com/conda/conda/issues/9392#issuecomment-617345019
   unset CONDA_SHLVL
   # >>> conda initialize >>>
