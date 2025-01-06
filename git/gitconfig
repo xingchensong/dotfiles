@@ -28,3 +28,13 @@
 
 [core]
 	editor = vim
+	packedGitLimit = 1g
+	packedGitWindowSize = 1g
+	bigFileThreshold = 1g
+[safe]
+	directory = /jfs-hdfs/user/binbin.zhang/github/wespeaker
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
