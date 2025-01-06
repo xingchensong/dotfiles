@@ -23,10 +23,12 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 # # https://anaconda.org/conda-forge/tmux
 # # https://anaconda.org/conda-forge/nodejs
 conda update -n base conda -y && conda install -y pip
-conda install -c conda-forge git vim zsh shellcheck tmux cmake nodejs ruby gawk -y
-conda search cudatoolkit
-conda install cudatoolkit
-pip3 install pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8 gpustat nvitop -i https://pypi.tuna.tsinghua.edu.cn/simple
+conda install -c conda-forge git vim zsh shellcheck tmux cmake nodejs ruby gawk ctags -y
+conda install -c conda-forge gcc=11.4.0 gxx=11.4.0 libstdcxx-devel_linux-64=11.4.0 ld_impl_linux-64 sysroot_linux-64=2.17 -y
+# conda search cudatoolkit
+# conda install cudatoolkit
+pip install pynvim neovim jedi autopep8 cpplint pylint isort cmakelint cmake-format flake8 gpustat nvitop -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install torch==2.5.1+cu121 torchaudio==2.5.1+cu121 --extra-index-url https://download.pytorch.org/whl/cu121
 # autojump
 git clone https://github.com/wting/autojump.git
 cd autojump && ./install.py
