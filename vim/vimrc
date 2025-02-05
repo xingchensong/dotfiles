@@ -1,5 +1,6 @@
 " -------------------------------------------------------------------------------
 " vim-plug
+" Remember to run `PlugInstall`
 " -------------------------------------------------------------------------------
 
 " set the runtime path to include vim-plug and initialize
@@ -92,6 +93,7 @@ Plug 'https://github.com/vim-scripts/AnsiEsc.vim'
 Plug 'https://github.com/github/copilot.vim.git', { 'branch': 'release' }
 
 " Debugger
+" Remember to run `:VimspectorInstall --all`
 Plug 'puremourning/vimspector'
 
 " All of your Plugins must be added before the following line
@@ -428,6 +430,8 @@ function! s:gitModified()
 endfunction
 " Use NERDTree bookmarks
 let NERDTreeShowBookmarks = 1
+" Show files like '.gitignore'
+let NERDTreeShowHidden=1
 let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- ~/.NERDTreeBookmarks")
 " Display NERDTree bookmarks as a separate list
 " Read ~/.NERDTreeBookmarks file and takes its second column

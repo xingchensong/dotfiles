@@ -1,0 +1,36 @@
+{
+  "configurations": {
+    "Vim - debug": {                                      // 配置名
+      "adapter": "vscode-cpptools",                         // 使用的调试适配器
+      "configuration": {                                  // 具体的配置
+        "type":    "cppdbg",                                // 调试器类型：cppdbg(GDB/LLDB) 或 cppvsdbg(VISUAL STUDIO)
+        "request": "launch",                                // 调试类型：launch（启动程序） 或 attach（连接进程）
+        "program": "${workspaceRoot}/a.out",                // 带有调试信息的可执行文件目录
+        "args": [                                         // 程序的参数，一个 json 数组
+        ],
+        "cwd": "${workspaceRoot}",                          // 当前工作目录
+        "environment": [                                  // 环境变量
+          { "name": "VIMRUNTIME", "value": "${workspaceRoot}" }
+        ],
+        "externalConsole": false,                         // 是否使用外部终端
+        "stopAtEntry": true,                              // 是否在程序入口点暂停
+        "MIMode": "gdb",                                    // 使用 LLDB/GDB 作为调试器
+        "logging": {                                      // 调试适配器的输出
+          "engineLogging": false                          // 是否打印调试适配器产生的信息，默认不打印
+        },
+        "breakpoints": {
+          "exception": {
+            "all": "",
+            "cpp_catch": "",
+            "cpp_throw": "Y",                               // 抛出异常时暂停
+            "objc_catch": "N",                              // 捕获时不暂停
+            "objc_throw": "",
+            "swift_catch": "",
+            "swift_throw": ""
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json"
+}
