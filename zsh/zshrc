@@ -248,3 +248,24 @@ if [[ $(hostname -f) == *.hogpu.cc ]]; then
   unset __conda_setup
   # <<< conda initialize <<<
 fi
+
+if [[ $(hostname -f) == *.xiaomi.com ]]; then
+  export PATH="/opt/conda/bin:/opt/conda/bin:/opt/conda/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/root/.cloudml-cli/bin:$PATH"
+
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/opt/conda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then
+          . "/opt/conda/etc/profile.d/conda.sh"
+      else
+          export PATH="/opt/conda/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+
+  conda activate /mnt/user-ssd/songxingchen/.conda/envs/touchnet
+fi
