@@ -27,7 +27,7 @@ if has('nvim') " need 'pip3 install --user pynvim neovim' (maybe sudo) and vim c
 else
   Plug 'https://github.com/Shougo/deoplete.nvim'
   Plug 'https://github.com/roxma/nvim-yarp'
-  Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
+  " Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
 endif
 " template
 Plug 'https://github.com/SirVer/ultisnips'
