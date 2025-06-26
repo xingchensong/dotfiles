@@ -204,6 +204,7 @@ if [[ $(hostname -f) == *.xiaomi.com || "$(whoami)" == "root" ]]; then
   unset __conda_setup
   # <<< conda initialize <<<
   export PATH="/opt/conda/bin:$PATH"
+  zsh
 fi
 
 [[ -s ${HOME}/.autojump/etc/profile.d/autojump.sh ]] && source ${HOME}/.autojump/etc/profile.d/autojump.sh
