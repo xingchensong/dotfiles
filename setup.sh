@@ -149,4 +149,9 @@ else
   echo "'$HOME/.vim/UltiSnips' 存在。跳过"
 fi
 
+vim -E -s +PlugInstall +qall
+sed -i 's/command! -nargs=0 -complete=customlist,NERDTreeCompleteProjectNames NERDTreeProjectLoadFromCWD call g:NERDTreeProject.LoadFromCWD()/command! -nargs=* -complete=customlist,NERDTreeCompleteProjectNames NERDTreeProjectLoadFromCWD call g:NERDTreeProject.LoadFromCWD()/' $HOME/.vim/vim_plug/nerdtree-project-plugin/nerdtree_plugin/project.vim
+tmux source $HOME/.tmux.conf
+$HOME/.tmux/plugins/tpm/bin/install_plugins
+
 echo "DONE"
