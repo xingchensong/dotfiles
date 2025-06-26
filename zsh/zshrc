@@ -249,7 +249,7 @@ if [[ $(hostname -f) == *.hogpu.cc ]]; then
   # <<< conda initialize <<<
 fi
 
-if [[ $(hostname -f) == *.xiaomi.com ]]; then
+if [[ $(hostname -f) == *.xiaomi.com || "$(whoami)" == "root" ]]; then
   export PATH="/opt/conda/bin:/opt/conda/bin:/opt/conda/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/root/.cloudml-cli/bin:$PATH"
 
   # >>> conda initialize >>>

@@ -119,9 +119,34 @@ let g:gutentags_cache_dir = s:vim_tags
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
+" Create tags for python packages in conda env
+" # (激活 conda 环境后)
+" CONDA_ENV_NAME=$(basename "$CONDA_PREFIX")
+" CONDA_SITE_PACKAGES_PATH="$CONDA_PREFIX/lib/python$(python -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')/site-packages"
+" VIM_TAGS_DIR="$HOME/.cache/tags"
+" mkdir -p "$VIM_TAGS_DIR"
+" CONDA_TAGS_FILE="${VIM_TAGS_DIR}/${CONDA_ENV_NAME}_python_libs.tags"
+" ctags -R -f "$CONDA_TAGS_FILE" \
+"   --languages="python" \
+"   --python-kinds="+cfmp" \
+"   --exclude='*.pyc' --exclude='*.pyo' --exclude='__pycache__/*' \
+"   "$CONDA_SITE_PACKAGES_PATH"
+let conda_prefix = $CONDA_PREFIX
+if !empty(conda_prefix)
+    let conda_env_name = fnamemodify(conda_prefix, ':t')
+    let conda_tags_file = expand('~/.cache/tags/') . conda_env_name . '_python_libs.tags'
+    if filereadable(conda_tags_file)
+        " 将 Conda 环境的 tags 文件路径追加到 Vim 的 tags 搜索路径中
+        let &tags = &tags . ',' . fnameescape(conda_tags_file)
+        " 你可以通过 :echo &tags 来查看最终的 tags 路径列表
+    else
+        " 可选：如果 tags 文件不存在，给个提示
+        echom "Gutentags: Conda tags file not found for " . conda_env_name . ": " . conda_tags_file
+    endif
+endif
 " Configure ctags parameters
 let g:gutentags_ctags_extra_args = ['--fields=+niazSlm', '--extra=+q']
-let g:gutentags_ctags_extra_args = ['--recurse=yes', '--exclude=.git', '--exclude=fc_base', '--exclude=build']
+let g:gutentags_ctags_extra_args = ['--recurse=yes', '--exclude=.git', '--exclude=fc_base', '--exclude=build', '--exclude=exp']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px', '--python-kinds=-i']
 " generate new tags if you just finished writing a new file
@@ -236,7 +261,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let g:startify_session_dir = expand('~/.vim/session')
 
 " Copilot proxy
-let g:copilot_proxy = '10.103.132.22:7890'
+" let g:copilot_proxy = '10.103.132.22:7890'
 
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'

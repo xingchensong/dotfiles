@@ -46,7 +46,7 @@ export LD_LIBRARY_PATH=$HOME/.local/lib:/usr/lib:$LD_LIBRARY_PATH
 # chsh -s $HOME/.local/bin/zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "install oh-my-zsh via zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh"
-  sh zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh
+  sh zsh/install_oh_my_zsh_079e7bb5e0a79171f3356d55d3f6302a82645a39.sh --unattended --keep-zshrc
 fi
 cp -R zsh/zsh-autosuggestions  $HOME/.oh-my-zsh/custom/plugins/
 cp -R zsh/zsh-syntax-highlighting  $HOME/.oh-my-zsh/custom/plugins/
@@ -69,18 +69,84 @@ fi
 # see scripts/install_pkg.sh
 
 # 4. set paths
-ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
-ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
-ln -sf $CURRENT_DIR/bash/bashrc $HOME/.bashrc
-ln -sf $CURRENT_DIR/bash/bashrc $HOME/.bash_profile
-ln -sf $CURRENT_DIR/bash/bashrc $HOME/.profile
-ln -sf $CURRENT_DIR/tmux/tmux.conf $HOME/.tmux.conf
-ln -sf $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
-ln -sf $CURRENT_DIR/./zsh/avit.zsh-theme $HOME/.oh-my-zsh/themes/avit.zsh-theme
+if [[ -e "$HOME/.vimrc" && ! -L "$HOME/.vimrc"  ]]; then
+  echo "'$HOME/.vimrc' 存在且不是符号链接。正在创建备份..."
+  cp -p $HOME/.vimrc $HOME/.vimrc.bak
+  ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
+else
+  echo "'$HOME/.vimrc' 不存在或者是符号链接。正在生成..."
+  ln -sf $CURRENT_DIR/vim/vimrc $HOME/.vimrc
+fi
+
+if [[ -e "$HOME/.zshrc" && ! -L "$HOME/.zshrc"  ]]; then
+  echo "'$HOME/.zshrc' 存在且不是符号链接。正在创建备份..."
+  cp -p $HOME/.zshrc $HOME/.zshrc.bak
+  ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
+else
+  echo "'$HOME/.zshrc' 不存在或者是符号链接。正在生成..."
+  ln -sf $CURRENT_DIR/zsh/zshrc $HOME/.zshrc
+fi
+
+if [[ -e "$HOME/.bashrc" && ! -L "$HOME/.bashrc"  ]]; then
+  echo "'$HOME/.bashrc' 存在且不是符号链接。正在创建备份..."
+  cp -p $HOME/.bashrc $HOME/.bashrc.bak
+  ln -sf $CURRENT_DIR/bash/bashrc $HOME/.bashrc
+else
+  echo "'$HOME/.bashrc' 不存在或者是符号链接。正在生成..."
+  ln -sf $CURRENT_DIR/bash/bashrc $HOME/.bashrc
+fi
+
+if [[ -e "$HOME/.bash_profile" && ! -L "$HOME/.bash_profile"  ]]; then
+  echo "'$HOME/.bash_profile' 存在且不是符号链接。正在创建备份..."
+  cp -p $HOME/.bash_profile $HOME/.bash_profile.bak
+  ln -sf $CURRENT_DIR/bash/bashrc $HOME/.bash_profile
+else
+  echo "'$HOME/.bash_profile' 不存在或者是符号链接。正在生成..."
+  ln -sf $CURRENT_DIR/bash/bashrc $HOME/.bash_profile
+fi
+
+if [[ -e "$HOME/.profile" && ! -L "$HOME/.profile"  ]]; then
+  echo "'$HOME/.profile' 存在且不是符号链接。正在创建备份..."
+  cp -p $HOME/.profile $HOME/.profile.bak
+  ln -sf $CURRENT_DIR/bash/bashrc $HOME/.profile
+else
+  echo "'$HOME/.profile' 不存在或者是符号链接。正在生成..."
+  ln -sf $CURRENT_DIR/bash/bashrc $HOME/.profile
+fi
+
+
+if [[ -e "$HOME/.tmux.conf" && ! -L "$HOME/.tmux.conf"  ]]; then
+  echo "'$HOME/.tmux.conf' 存在且不是符号链接。正在创建备份..."
+  cp -p $HOME/.tmux.conf $HOME/.tmux.conf.bak
+  ln -sf $CURRENT_DIR/tmux/tmux.conf $HOME/.tmux.conf
+else
+  echo "'$HOME/.tmux.conf' 不存在或者是符号链接。正在生成..."
+  ln -sf $CURRENT_DIR/tmux/tmux.conf $HOME/.tmux.conf
+fi
+
+if [[ -e "$HOME/.gitconfig" && ! -L "$HOME/.gitconfig"  ]]; then
+  echo "'$HOME/.gitconfig' 存在且不是符号链接。正在创建备份..."
+  cp -p $HOME/.gitconfig $HOME/.gitconfig.bak
+  ln -sf $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
+else
+  echo "'$HOME/.gitconfig' 不存在或者是符号链接。正在生成..."
+  ln -sf $CURRENT_DIR/git/gitconfig $HOME/.gitconfig
+fi
+
+if [[ -e "$HOME/.oh-my-zsh/themes/avit.zsh-theme" && ! -L "$HOME/.oh-my-zsh/themes/avit.zsh-theme"  ]]; then
+  echo "'$HOME/.oh-my-zsh/themes/avit.zsh-theme' 存在且不是符号链接。正在创建备份..."
+  cp -p $HOME/.oh-my-zsh/themes/avit.zsh-theme $HOME/.oh-my-zsh/themes/avit.zsh-theme.bak
+  ln -sf $CURRENT_DIR/zsh/avit.zsh-theme $HOME/.oh-my-zsh/themes/avit.zsh-theme
+else
+  echo "'$HOME/.oh-my-zsh/themes/avit.zsh-theme' 不存在或者是符号链接。正在生成..."
+  ln -sf $CURRENT_DIR/zsh/avit.zsh-theme $HOME/.oh-my-zsh/themes/avit.zsh-theme
+fi
+
 if [ ! -e "$HOME/.vim/UltiSnips" ]; then
+  echo "'$HOME/.vim/UltiSnips' 不存在。正在生成..."
   ln -s $PWD/vim/snippets $HOME/.vim/UltiSnips
 else
-  echo "UltiSnips exists: $HOME/.vim/UltiSnips"
+  echo "'$HOME/.vim/UltiSnips' 存在。跳过"
 fi
 
 echo "DONE"
