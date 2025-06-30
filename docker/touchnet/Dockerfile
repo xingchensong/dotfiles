@@ -149,6 +149,10 @@ WORKDIR /root
 RUN git clone https://github.com/xingchensong/dotfiles.git && echo "hahah"
 WORKDIR /root/dotfiles
 RUN bash setup.sh
+# hook需要bashrc，而hook 运行时用的宿主机的文件系统。软链映射不到容器里的文件。其他的rc不需要
+RUN cp --remove-destination bash/bashrc /root/.bashrc
+RUN cp --remove-destination bash/bashrc /root/.bash_profile
+RUN cp --remove-destination bash/bashrc /root/.profile
 
 # 生成 ctags 索引
 RUN mkdir -p /root/.cache/tags
